@@ -4,8 +4,13 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
+group :development do
+  gem 'sqlite3'
+end
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 # USAMOS CARRIERWAVE PARA LA SUBIDA DE ARCHIVOS
 gem 'carrierwave'
 # USAMOS DEVISE PARA LA AUTENTICACIÓN DE USUARIOS
@@ -44,10 +49,7 @@ group :development, :test do
 end
 
 
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
-end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
