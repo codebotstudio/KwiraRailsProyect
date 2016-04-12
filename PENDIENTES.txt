@@ -1,0 +1,5 @@
+PENDIENTES
+
+Crear dentro de productos la vista y controlador "MANAGE" para actualizar precios y saldos en stock
+
+MODELO: 'Entradas' donde escogeremos productos y cantidades.

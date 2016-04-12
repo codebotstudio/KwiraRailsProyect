@@ -1,0 +1,63 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 text-right">
+			<%= link_to "Editar producto", edit_product_path(@product), class:"btn btn-info btn-lg" %>
+			<%= link_to "Registrar nuevo producto", new_product_path(@product), class:"btn btn-success btn-lg" %>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="well">
+				<div class="row">
+					<div class="col-md-6">
+						<%= image_tag(@product.image_url, class:"img-responsive") if @product.image.present? %>
+					</div>
+					<div class="col-md-6">
+						
+						<h1 class="text-center"><%= @product.sale_title %></h1>
+						<hr>
+						<div class="field">
+							<h4>Nombre que aparecerá en el ticket</h4>
+							<p><%= @product.ticket_title  %></p>
+						</div>
+						<div class="field">
+							<h4>Tipo de producto</h4>
+							<p><%= @product.product_type%></p>
+						</div>
+						<div class="field">
+							<h4>Descripción del producto</h4>
+							<p><%= @product.description%></p>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="field">
+									<h4>Precio de compra</h4>
+									<p><%= @product.buy_price%></p>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="field">
+									<h4>Precio de venta</h4>
+									<p><%= @product.sale_price%></p>
+								</div>
+							</div>
+						</div>
+						<!-- AÚN QUEDA LA DUDA DE PONER ESTO EN EL REGISTRO, PODRIA PONERSE Y QUE ACEPTE UN NULO -->
+
+						<div class="field">
+							<h4>Cantidad en almacen</h4>
+							<p><%= @product.units.to_s + " " + @product.measurement_unit %></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+<div>
+	<%= @product.description %>
+</div>
+<div>
+	<%= link_to "Editar", edit_product_path(@product) %>
+</div>

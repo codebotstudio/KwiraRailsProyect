@@ -1,0 +1,73 @@
+<%= form_for(@product) do |f| %>
+	<% @product.errors.full_messages.each do |message| %>
+	<div class="be-red">
+		* <%= message %>
+	</div>
+	<%end%>
+	<div class="field">
+		<h4>Nombre de Venta</h4>
+		<%= f.text_field :sale_title, placeholder: "Nombre de venta", class:"form-control" %>
+	</div>
+	<div class="field">
+		<h4>Nombre que aparecerá en el ticket</h4>
+		<%= f.text_field :ticket_title, placeholder: "Nombre de Ticket", class:"form-control" %>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="field">
+				<h4>Tipo de producto</h4>
+				<%= f.select(:product_type, options_for_select([['Químicos', 1],['Jarciería', 2],['Otros', 3]],@product.product_type), {prompt: "Selecciona tipo de producto"}, class:"form-control" )%>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="field">
+				<h4>Unidad de medida</h4>
+				<%= f.select(:measurement_unit, options_for_select([['Litros', 'lt'], ['Mililitros', 'ml'], ['Kilos','kg'],['Gramos','g'],['Unidades', 'unidades']],@product.measurement_unit), {prompt: "Unidad de medida"}, {class: "form-control"}) %>
+			</div>
+		</div>
+	</div>
+	<div class="field">
+		<h4>Descripción del producto</h4>
+		<%= f.text_area :description, placeholder: "Descripción del producto", class:"form-control" %>
+	</div>
+	<div class="field">
+		<h4>Imagen del producto</h4>
+		<%= f.file_field :image %>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="field">
+				<h4>Precio de compra</h4>
+				<div class="input-group">
+					<span class="input-group-addon">$</span>
+					<%= f.number_field :buy_price, placeholder: "Precio de compra", class:"form-control", step: 'any' %>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="field">
+				<h4>Precio de venta</h4>
+				<div class="input-group">
+					<span class="input-group-addon">$</span>
+					<%= f.number_field :sale_price, placeholder: "Precio de venta", class:"form-control", step: 'any' %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- AÚN QUEDA LA DUDA DE PONER ESTO EN EL REGISTRO, PODRIA PONERSE Y QUE ACEPTE UN NULO -->
+
+	<div class="field">
+		<h4>Unidades de entrada</h4>
+		<%= f.text_field :units, placeholder: "Unidades de entrada", class:"form-control" %>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<%= f.submit "Guardar", class:"btn btn-primary btn-lg btn-block" %>
+		</div>
+		<div class="col-md-6">
+			<%= link_to "Cancelar", products_path(@product), class:"btn btn-danger btn-lg btn-block" %>
+		</div>
+	</div>
+	<div class="field">
+	</div>
+<%end%>

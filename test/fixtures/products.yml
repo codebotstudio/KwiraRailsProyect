@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sale_title: MyString
+  ticket_title: MyString
+  price: 
+  available: false
+  description: MyText
+  measurement_unit: MyString
+  product_type: 1
+
+two:
+  sale_title: MyString
+  ticket_title: MyString
+  price: 
+  available: false
+  description: MyText
+  measurement_unit: MyString
+  product_type: 1

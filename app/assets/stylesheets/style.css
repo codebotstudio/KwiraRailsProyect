@@ -1,0 +1,36 @@
+body{
+	font-size: 15px;
+}
+h1{
+  font-family: 'Ubuntu';
+  font-weight: 700;
+  font-size: 5em;
+}
+
+.top-head{
+	padding-bottom: 0.5em;
+}
+
+h2{
+  font-family: 'Ubuntu';
+  font-weight: 500;
+}
+h4{
+  font-family: 'Ubuntu';
+  font-weight: 500;
+}
+p{
+	font-family: 'Ubuntu';
+	font-weight: 300;
+}
+
+.kuira-title{
+}
+.field{
+  margin-bottom: 15px;
+}
+/* CLASE PARA COLOREAR ERRORES */
+.be-red{
+  background-color: red;
+  color: white;
+}

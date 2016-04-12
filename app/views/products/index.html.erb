@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-right">
+			<%= link_to "Registrar nuevo producto", new_product_path(@product), class:"btn btn-success btn-lg" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center top-head">Productos</h1>
+				<div class="row">
+					<% @products.each do |product| %>
+					<div class="col-md-3">
+						<div class="thumbnail">
+							<div class="caption">
+								<%= image_tag(product.image_url, class:"img-responsive") if product.image.present? %>
+								<h2><%= product.sale_title %></h2>
+								<p><%= product.description %></p>
+								<h4>Cantidad en almacen: <p><%= product.units.to_s + " " + product.measurement_unit %></p></h4>
+								<%= link_to product.sale_title, product, class:"btn btn-warning btn-block" %>
+							</div>
+						</div>
+					</div>
+					<% end %>
