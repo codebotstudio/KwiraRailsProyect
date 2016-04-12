@@ -60,14 +60,12 @@
 		<h4>Unidades de entrada</h4>
 		<%= f.text_field :units, placeholder: "Unidades de entrada", class:"form-control" %>
 	</div>
-	<div class="row">
+	<div class="row field">
 		<div class="col-md-6">
-			<%= f.submit "Guardar", class:"btn btn-primary btn-lg btn-block" %>
+			<%= f.submit "Guardar", class:"btn btn-primary btn-lg btn-block field" %>
 		</div>
 		<div class="col-md-6">
-			<%= link_to "Cancelar", products_path(@product), class:"btn btn-danger btn-lg btn-block" %>
+			<%= link_to "Cancelar", products_path(@product), class:"btn btn-warning btn-lg btn-block field" %>
 		</div>
-	</div>
-	<div class="field">
 	</div>
 <%end%>
