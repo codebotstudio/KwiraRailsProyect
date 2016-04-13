@@ -1,6 +1,6 @@
 <%= form_for(@product) do |f| %>
 	<% @product.errors.full_messages.each do |message| %>
-	<div class="be-red">
+	<div class="alert alert-danger" role="alert">
 		* <%= message %>
 	</div>
 	<%end%>
