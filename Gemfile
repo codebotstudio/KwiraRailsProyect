@@ -11,10 +11,16 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+# USAMOS La GEMA ROLIFY PARA LOS ROLES
+gem 'rolify', '~> 5.1'
 # USAMOS CARRIERWAVE PARA LA SUBIDA DE ARCHIVOS
 gem 'carrierwave'
 # USAMOS DEVISE PARA LA AUTENTICACIÓN DE USUARIOS
 gem 'devise'
+
+# USAMOS RAILS ADMIN PARA ADMINISTRAR SITIO
+gem 'rails_admin', '~> 0.8.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
