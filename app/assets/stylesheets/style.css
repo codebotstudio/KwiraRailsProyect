@@ -37,3 +37,9 @@ p{
 .be-blue{
   color: #4183D7;
 }
+.btn-high{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 2em;
+  font-family: 'Ubuntu';
+}
