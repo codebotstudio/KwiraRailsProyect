@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sale.user %>
+</p>
+
+<p>
+  <strong>Total price:</strong>
+  <%= @sale.total_price %>
+</p>
+
+<p>
+  <strong>Items:</strong>
+  <%= @sale.items %>
+</p>
+
+<p>
+  <strong>Pending:</strong>
+  <%= @sale.pending %>
+</p>
+
+<%= link_to 'Edit', edit_sale_path(@sale) %> |
+<%= link_to 'Back', sales_path %>

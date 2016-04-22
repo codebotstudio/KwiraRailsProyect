@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+
+	before_action :validate_user, except: [:show, :index]
 	#A esta ruta se accede cn el verbo GET y el path "/products"
 	def index
 		#Variables con @ son variables de clase y se pueden acceder desde la vista y el controlador, sin @ son inaccesibles para la vista
@@ -54,6 +56,10 @@ class ProductsController < ApplicationController
 	end
 
 	private
+
+	def validate_user 
+		redirect_to new_user_session_path, notice: "Inicia sesión para completar la acción"
+	end
 
 	def product_params
 		params.require(:product).permit(:sale_title, :ticket_title, :sale_price, :buy_price, :units, :description, :measurement_unit, :product_type, :image)
