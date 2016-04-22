@@ -34,12 +34,12 @@
                 <% end %>
               </td>
               <% if sale.pending %>
-                <td><%= link_to 'Liquidar venta', edit_sale_path(sale), class:"btn btn-success" %></td>
+                <td class="text-center"><%= link_to 'Liquidar venta', edit_sale_path(sale), class:"btn btn-success" %></td>
 
               <% else %>
                 <td></td>
               <% end %>
-              <td><%= link_to 'Detalles', sale , class:"btn btn-info" %></td>
+              <td class="text-center"><%= link_to 'Detalles', sale , class:"btn btn-info" %></td>
             </tr>
           <% end %>
         </tbody>
