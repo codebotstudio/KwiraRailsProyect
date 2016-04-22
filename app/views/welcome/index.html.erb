@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h3 class="text-right">Bienvenido </h3>
+			<h3 class="text-right">Bienvenido <%= current_user.email %></h3>
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">
 							<%= link_to "NUEVA VENTA", products_path,class:"btn btn-success btn-block btn-lg btn-high" %>

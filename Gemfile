@@ -22,6 +22,9 @@ gem 'devise'
 # USAMOS RAILS ADMIN PARA ADMINISTRAR SITIO
 gem 'rails_admin', '~> 0.8.1'
 
+# USAMOS REDIS PARA EL CARRITO DE VENTAS
+gem 'redis', '~> 3.3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
