@@ -1,33 +1,80 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
 
-<h1>Listing Sales</h1>
+      <h1 class="text-center top-head">Ventas recientes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Total price</th>
-      <th>Items</th>
-      <th>Pending</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Empleado</th>
+            <th>Total de venta</th>
+            <th>Numero de productos</th>
+            <th>Estado</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @sales.each do |sale| %>
-      <tr>
-        <td><%= sale.user %></td>
-        <td><%= sale.total_price %></td>
-        <td><%= sale.items %></td>
-        <td><%= sale.pending %></td>
-        <td><%= link_to 'Show', sale %></td>
-        <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
-        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @sales.each do |sale| %>
+            <tr>
+              <td><%= sale.user.email %></td>
+              <td> $ <%=sale.total_price %></td>
+              <td><%= sale.items %></td>
+              <td>
+                <% if sale.pending %>
+                  Pendiente
+                <% else %>
+                  Completada
+                <% end %>
+              </td>
+              <% if sale.pending %>
+                <td><%= link_to 'Liquidar venta', edit_sale_path(sale), class:"btn btn-success" %></td>
 
-<br>
+              <% else %>
+                <td></td>
+              <% end %>
+              <td><%= link_to 'Detalles', sale , class:"btn btn-info" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<%= link_to 'New Sale', new_sale_path %>
+      <br>
+
+      <%= link_to 'New Sale', new_sale_path %>
+
+
+        <% @sales.each_slice(4) do |sales| %>
+        <div class="row">
+          <% sales.each do |sale| %>
+          <%# if product.product_type == 1 %>
+          <div class="col-md-3 col-sm-4 col-xs-6">
+            <div class="thumbnail">
+              <div class="caption">
+                <h2><%= sale.user.email %></h2>
+                <h4>Total de venta: <p> <%= "$" + sale.total_price.to_s %> </p> </h4>
+                <h4>Fecha: <p> <%= sale.created_at.to_s %> </p> </h4>
+                <h4>Estado:  
+                  <% if sale.pending %> 
+                    <p>Pendiente</p> 
+                  <% else %>
+                    <p>Confirmada</p>
+                  <%end%>
+                </h4>
+                <% if sale.pending %>
+                  <%= link_to sale.items, edit_sale_path(sale), class:"btn btn-warning btn-block" %>
+                <% else %>
+                  <%= link_to sale.items, sale, class:"btn btn-warning btn-block" %>
+                <%end%>
+              </div>
+            </div>
+          </div>
+          <%# end %>
+          <%end%>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>
