@@ -23,7 +23,14 @@
 						</div>
 						<div class="field">
 							<h4>Tipo de producto</h4>
-							<p><%= @product.product_type%></p>
+							<% case @product.product_type %>
+							<% when 1 %>
+							<p>Químicos</p>
+							<% when 2 %>
+							<p>Jarciería</p>
+							<% else %>
+							<p>Otros</p>
+							<%end%>
 						</div>
 						<div class="field">
 							<h4>Descripción del producto</h4>
@@ -33,13 +40,13 @@
 							<div class="col-md-6">
 								<div class="field">
 									<h4>Precio de compra</h4>
-									<p><%= @product.buy_price%></p>
+									<p>$<%= @product.buy_price%></p>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="field">
 									<h4>Precio de venta</h4>
-									<p><%= @product.sale_price%></p>
+									<p>$<%= @product.sale_price%></p>
 								</div>
 							</div>
 						</div>

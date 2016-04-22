@@ -19,7 +19,7 @@
 								<p><%= product.description %></p>
 								<h4>Precio de venta: <p> <%= "$" + product.sale_price.to_s %> </p> </h4>
 								<h4>Cantidad en almacen: <p><%= product.units.to_s + " " + product.measurement_unit %></p></h4>
-								<%= link_to product.sale_title, product, class:"btn btn-warning btn-block" %>
+								<%= link_to "Detalles", product, class:"btn btn-warning btn-block" %>
 							</div>
 						</div>
 					</div>

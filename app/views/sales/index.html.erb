@@ -18,7 +18,11 @@
 
         <tbody>
           <% @sales.each do |sale| %>
-            <tr>
+            <% if sale.pending %>
+            <tr class="warning">
+            <% else %>
+            <tr class="info">
+            <% end %>
               <td><%= sale.user.email %></td>
               <td> $ <%=sale.total_price %></td>
               <td><%= sale.items %></td>
@@ -44,37 +48,6 @@
       <br>
 
       <%= link_to 'New Sale', new_sale_path %>
-
-
-        <% @sales.each_slice(4) do |sales| %>
-        <div class="row">
-          <% sales.each do |sale| %>
-          <%# if product.product_type == 1 %>
-          <div class="col-md-3 col-sm-4 col-xs-6">
-            <div class="thumbnail">
-              <div class="caption">
-                <h2><%= sale.user.email %></h2>
-                <h4>Total de venta: <p> <%= "$" + sale.total_price.to_s %> </p> </h4>
-                <h4>Fecha: <p> <%= sale.created_at.to_s %> </p> </h4>
-                <h4>Estado:  
-                  <% if sale.pending %> 
-                    <p>Pendiente</p> 
-                  <% else %>
-                    <p>Confirmada</p>
-                  <%end%>
-                </h4>
-                <% if sale.pending %>
-                  <%= link_to sale.items, edit_sale_path(sale), class:"btn btn-warning btn-block" %>
-                <% else %>
-                  <%= link_to sale.items, sale, class:"btn btn-warning btn-block" %>
-                <%end%>
-              </div>
-            </div>
-          </div>
-          <%# end %>
-          <%end%>
-        </div>
-        <% end %>
     </div>
   </div>
 </div>
