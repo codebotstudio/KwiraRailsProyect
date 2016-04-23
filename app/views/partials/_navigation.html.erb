@@ -17,7 +17,7 @@
 	      <ul class="nav navbar-nav navbar-right">
 	        <li> <%= link_to "Inicio", root_path %> </li>
 	        <% if user_signed_in? %>
-	        <li> <%= current_user.name %> </li>
+	        <li> Bienvenido <%= current_user.email %> </li>
 	        <li> <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %> </li>
 	        <% else %>
 	        <li><%= link_to  "Iniciar sesión", new_user_session_path %></li>

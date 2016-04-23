@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-	before_action :authenticate_user!, except: [:show, :index]
+	before_action :authenticate_user!, except: [:show, :index, :list]
 	#A esta ruta se accede cn el verbo GET y el path "/products"
 	def index
 		#Variables con @ son variables de clase y se pueden acceder desde la vista y el controlador, sin @ son inaccesibles para la vista
@@ -18,6 +18,10 @@ class ProductsController < ApplicationController
 
 	def edit
 		@product = Product.find(params[:id])
+	end
+
+	def list
+		@products = Product.all
 	end
 
 	# A esta ruta se accede con POST a /products

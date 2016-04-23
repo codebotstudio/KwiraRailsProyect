@@ -1,14 +1,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h3 class="text-right">Bienvenido </h3>
 				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
-							<%= link_to "NUEVA VENTA", products_path,class:"btn btn-success btn-block btn-lg btn-high" %>
+					<div class="col-md-6 col-md-offset-3">	
+							<%= link_to "NUEVA VENTA", new_sale_path, class:"btn btn-success btn-block btn-lg btn-high" %>
 							<br>
-							<%= link_to "CONSULTAR PRODUCTOS", products_path,class:"btn btn-info btn-block btn-lg btn-high" %>
+							<%= link_to "CONSULTAR PRODUCTOS", products_path, class:"btn btn-info btn-block btn-lg btn-high" %>
 							<br>
-							<%= link_to "VENTAS DEL DÍA", sales_path,class:"btn btn-primary btn-block btn-lg btn-high" %>
+							<%= link_to "HISTORIAL DE VENTAS", sales_path, class:"btn btn-primary btn-block btn-lg btn-high" %>
+							<br>
+							<%= link_to "AGREGAR PRODUCTOS", new_product_path, class:"btn btn-warning btn-block btn-lg btn-high" %>
+							<br>
+							<%= link_to "AGREGAR USUARIOS", sales_path, class:"btn btn-danger btn-block btn-lg btn-high" %>
 					</div>
 				</div>
 		</div>
