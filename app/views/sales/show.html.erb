@@ -1,135 +1,115 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Vendedor:</strong>
-  <%=  %>
-</p>
-
-<p>
-  <strong>Precio Total:</strong>
-  <%= @sale.total_price %>
-</p>
-
-<p>
-  <strong>Productos vendidos:</strong>
-  <%= @sale.items %>
-</p>
-
-<p>
-  <strong>Pending:</strong>
-  <%= @sale.pending %>
-</p>
-
 <%= link_to 'Edit', edit_sale_path(@sale) %> |
 <%= link_to 'Back', sales_path %>
-<%= link_to 'Delete',  @sale, method: :delete, class: "btn btn-danger btn-lg" %>
-
-<div class="row">
-	<div class="col-md-10 col-md-offset-1">
-		<div class="well">
-			<div class="row">
-				<div class="col-md-12">
-					
-					<h1 class="text-center">Detalles de la Venta</h1>
-					<hr>
-					<div class="row">
-						<div class="col-md-3">
-							<div class="field">
-								<h3>Vendedor:</h3>
-								<p><%= @sale.user.email  %></p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="well">
+				<div class="row">
+					<div class="col-md-12">
+						
+						<h1 class="text-center">Detalles de la Venta</h1>
+						<hr>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="field">
+									<h3>Vendedor:</h3>
+									<p><%= @sale.user.email  %></p>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="field">
-								<h3>Fecha:</h3>
-								<p><%= @sale.created_at %></p>
+							<div class="col-md-3">
+								<div class="field">
+									<h3>Fecha:</h3>
+									<p><%= @sale.created_at %></p>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="field">
-								<h3>Productos:</h3>
-								<p><%= @sale.items %></p>
+							<div class="col-md-3">
+								<div class="field">
+									<h3>Productos:</h3>
+									<p><%= @sale.items %></p>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="field">
-								<h3>Estado:</h3>
-								<% if @sale.pending %>
-								<p>Pendiente</p>
-								<% else %>
-								<p>Confirmada</p>
-								<% end %>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>Producto</th>
-										<th>Precio</th>
-										<th>Cantidad</th>
-										<th>Total</th>
-									</tr>
-								</thead>
-
-								<tbody>
-								  <% total = 0 %>
-						          <% @sale.products.each do |product| %>
-						          	<% case product.product_type %>
-						          	<% when 1 %>
-						            <tr class="info">
-									<% when 2 %>
-									<tr class="success">
+							<div class="col-md-3">
+								<div class="field">
+									<h3>Estado:</h3>
+									<% if @sale.pending %>
+									<p>Pendiente</p>
 									<% else %>
-									<tr class="warning">
+									<p>Confirmada</p>
 									<% end %>
-										
-						              <td><%= product.sale_title %></td>
-						              <td>$ <%= product.sale_price %></td>
-						              <td> <%=product.units.to_s %></td>
-						              <td> <%= product.units * product.sale_price %> </td>
-						            </tr>
-						           <% total += product.units * product.sale_price %>
-						          <% end %>
-						        </tbody>
-							</table>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 col-md-offset-6">
-							<div class="field">
-								<h3>Total de Venta:</h3>
-								<h2>$<%= total %></h2>
+								</div>
 							</div>
 						</div>
-						<br>
-					</div>
-					<div class="row">
-						<% if @sale.pending %>
-						<div class="col-md-6">
-							<div class="field">
-								<%= link_to  "Confirmar Venta", edit_sale_path(@sale), class:"btn btn-info btn-lg btn-block" %>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Producto</th>
+											<th>Precio</th>
+											<th>Cantidad</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+
+									<tbody>
+									  <% total = 0 %>
+							          <% @sale.products.each do |product| %>
+							          	<% case product.product_type %>
+							          	<% when 1 %>
+							            <tr class="info">
+										<% when 2 %>
+										<tr class="success">
+										<% else %>
+										<tr class="warning">
+										<% end %>
+											
+							              <td><%= product.sale_title %></td>
+							              <td>$ <%= product.sale_price %></td>
+							              <td> 1 </td>
+							              <td>$ <%= product.sale_price %> </td>
+							            </tr>
+							           <% total += product.sale_price %>
+							          <% end %>
+							        </tbody>
+								</table>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="field">
-								<%= link_to "Imprimir Ticket", root_path, class:"btn btn-success btn-lg btn-block" %>
+						<div class="row">
+							<div class="col-md-6 col-md-offset-6">
+								<div class="field">
+									<h3>Total de Venta:</h3>
+									<h2>$<%= total %></h2>
+								</div>
 							</div>
-						</div>
-						<% else %>
-						<div class="col-md-6 col-md-offset-3">
 							<br>
-							<div class="field">
-								<%= link_to "Imprimir Ticket", root_path, class:"btn btn-success btn-lg btn-block" %>
-							</div>
 						</div>
-						<% end %>
+						<div class="row">
+							<% if @sale.pending %>
+							<div class="col-md-6">
+								<div class="field">
+									<%= link_to  "Confirmar Venta", edit_sale_path(@sale), class:"btn btn-info btn-lg btn-block" %>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="field">
+									<%= link_to "Imprimir Ticket", root_path, class:"btn btn-success btn-lg btn-block" %>
+								</div>
+							</div>
+							<% else %>
+							<div class="col-md-6 col-md-offset-3">
+								<br>
+								<div class="field">
+									<%= link_to "Imprimir Ticket", root_path, class:"btn btn-success btn-lg btn-block" %>
+								</div>
+							</div>
+							<% end %>
+						</div>
+						<!-- AÚN QUEDA LA DUDA DE PONER ESTO EN EL REGISTRO, PODRIA PONERSE Y QUE ACEPTE UN NULO -->
 					</div>
-					<!-- AÚN QUEDA LA DUDA DE PONER ESTO EN EL REGISTRO, PODRIA PONERSE Y QUE ACEPTE UN NULO -->
 				</div>
 			</div>
 		</div>
-	</div>
-</div>	
+	</div>	
+</div>

@@ -1,6 +1,7 @@
 class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  #after_action :set_sale_params, only: [:create]
 
   # GET /sales
   # GET /sales.json
@@ -21,6 +22,7 @@ class SalesController < ApplicationController
 
   # GET /sales/1/edit
   def edit
+    @products = Product.all
   end
 
   # POST /sales
@@ -73,4 +75,8 @@ class SalesController < ApplicationController
     def sale_params
       params.require(:sale).permit(:user_id, :total_price, :items, :pending, :product_id)
     end
+
+  #  def set_sale_params
+  #    params[:items] = :product_id
+  #  end
 end

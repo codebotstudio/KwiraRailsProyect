@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.text_field :user_id, :value => current_user.id %>
   </div>
   <table class="table table-bordered">
         <thead>
@@ -58,18 +58,27 @@
         </tbody>
       </table>
   <div class="field">
-    <%= f.label :total_price %><br>
-    <%= f.text_field :total_price %>
+  <% total = 1008 %>
+    <h2>Total de venta:</h2>
+    <%= f.text_field :total_price, :value => total %>
   </div>
   <div class="field">
     <%= f.label :items %><br>
     <%= f.number_field :items %>
   </div>
-  <div class="field">
-    <%= f.label :pending %><br>
-    <%= f.check_box :pending %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="field">
+        <h2>Marcar Venta Pendiente: 
+        <%= f.check_box :pending %>
+        </h2>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="actions">
+        <br>
+        <%= f.submit "Terminar Venta", class:"btn btn-primary btn-lg btn-block field"%>
+      </div>
+    </div>
   </div>
 <% end %>
