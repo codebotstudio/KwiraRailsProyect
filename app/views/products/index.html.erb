@@ -48,7 +48,7 @@
 						<%end%>
 		              </td>
 		              <td> $ <%=product.sale_price %></td>
-		              <td><input type="text" class="form-control"></td>
+		              <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
 		              <td class="text-center"><%= link_to 'Detalles', product , class:"btn btn-warning" %></td>
 		            </tr>
 		          <% end %>
