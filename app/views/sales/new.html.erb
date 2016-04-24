@@ -3,52 +3,6 @@
     <div class="col-md-12">
       <p id="notice"><%= notice %></p>
 		<h1 class="text-center top-head">Nueva Venta</h1>
-
-
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Tipo</th>
-            <th>Precio</th>
-            <th>Disponible</th>
-            <th width="15%">Cantidad</th>
-            <th colspan="1"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @products.each do |product| %>
-          	<% case product.product_type %>
-          	<% when 1 %>
-            <tr class="info">
-      			<% when 2 %>
-      			<tr class="success">
-      			<% else %>
-      			<tr class="warning">
-      			<% end %>
-				
-              <td><%= product.sale_title %></td>
-              <td>
-              	<% case product.product_type %>
-        				<% when 1 %>
-        				Químicos
-        				<% when 2 %>
-        				Jarciería
-        				<% else %>
-        				Otros
-        				<%end%>
-              </td>
-              <td> $ <%=product.sale_price %></td>
-              <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-              <td> <input type="number" class="form-control"> </td>
-              <td class="text-center"><%= link_to 'Agregar', product , class:"btn btn-info" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
       <br>
 
       <%= link_to 'New Sale', new_sale_path %>

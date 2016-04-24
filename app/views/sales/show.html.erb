@@ -22,6 +22,7 @@
 
 <%= link_to 'Edit', edit_sale_path(@sale) %> |
 <%= link_to 'Back', sales_path %>
+<%= link_to 'Delete',  @sale, method: :delete, class: "btn btn-danger btn-lg" %>
 
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
@@ -74,8 +75,25 @@
 								</thead>
 
 								<tbody>
-									
-								</tbody>
+								  <% total = 0 %>
+						          <% @sale.products.each do |product| %>
+						          	<% case product.product_type %>
+						          	<% when 1 %>
+						            <tr class="info">
+									<% when 2 %>
+									<tr class="success">
+									<% else %>
+									<tr class="warning">
+									<% end %>
+										
+						              <td><%= product.sale_title %></td>
+						              <td>$ <%= product.sale_price %></td>
+						              <td> <%=product.units.to_s %></td>
+						              <td> <%= product.units * product.sale_price %> </td>
+						            </tr>
+						           <% total += product.units * product.sale_price %>
+						          <% end %>
+						        </tbody>
 							</table>
 						</div>
 					</div>
@@ -83,7 +101,7 @@
 						<div class="col-md-6 col-md-offset-6">
 							<div class="field">
 								<h3>Total de Venta:</h3>
-								<p>$<%= @sale.total_price %></p>
+								<h2>$<%= total %></h2>
 							</div>
 						</div>
 						<br>
