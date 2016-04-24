@@ -59,6 +59,8 @@ class ProductsController < ApplicationController
 		end
 	end
 
+
+
 	private
 
 	def validate_user 
