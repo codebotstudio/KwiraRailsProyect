@@ -82,10 +82,22 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-6 col-md-offset-6">
+							<div class="col-md-6">
 								<div class="field">
-									<h3>Total de Venta:</h3>
-									<h2>$<%= total %></h2>
+									<h2>Total de Venta:</h2>
+									<h1>$<%= total %></h1>
+								</div>
+							</div>
+							<% dinero_recibido = 0 %>
+							<% cambio = 0 %>
+							<div class="col-md-6">
+								<div class="field">
+									<h3>Recibo:</h3>
+									<div class="input-group">
+										<span class="input-group-addon">$</span>
+										<%= number_field dinero_recibido , placeholder: "Recibo", class:"form-control" %>
+									</div>
+									<h3>Cambio: <%= dinero_recibido - total %></h3>
 								</div>
 							</div>
 							<br>
