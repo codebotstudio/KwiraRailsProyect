@@ -22,7 +22,7 @@
 		<div class="col-md-6">
 			<div class="field">
 				<h4>Unidad de medida</h4>
-				<%= f.select(:measurement_unit, options_for_select([['Litros', 'lt'], ['Kilos','kg'], ['Unidades', 'unidades']],@product.measurement_unit), {prompt: "Unidad de medida"}, {class: "form-control"}) %>
+				<%= f.select(:measurement_unit, options_for_select([['Litros', 'lt'], ['Kilos','kg'], ['Piezas', 'piezas']],@product.measurement_unit), {prompt: "Unidad de medida"}, {class: "form-control"}) %>
 			</div>
 		</div>
 	</div>

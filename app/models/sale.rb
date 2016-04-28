@@ -16,4 +16,5 @@ class Sale < ActiveRecord::Base
   		HasProduct.create(product_id: product_id, sale_id: self.id)
   	end
   end
+
 end
