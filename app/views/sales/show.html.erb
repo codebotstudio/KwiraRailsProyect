@@ -27,7 +27,12 @@
 							<div class="col-md-3">
 								<div class="field">
 									<h3>Productos:</h3>
-									<p><%= @sale.items %></p>
+									<p><% prdct = 0 %>
+										<% @sale.products.each do |product| %>
+											<% prdct += 1 %>
+										<% end %>
+										<%= prdct %>
+									</p>
 								</div>
 							</div>
 							<div class="col-md-3">

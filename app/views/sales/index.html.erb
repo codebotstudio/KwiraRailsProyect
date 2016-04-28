@@ -9,8 +9,8 @@
         <thead>
           <tr>
             <th>Empleado</th>
-            <th>Total de venta</th>
             <th>Resumen de venta</th>
+            <th>Total de venta</th>
             <th>Estado</th>
             <th colspan="2"></th>
           </tr>
@@ -18,14 +18,20 @@
 
         <tbody>
           <% @sales.each do |sale| %>
+          <% total = 0 %>
             <% if sale.pending %>
             <tr class="warning">
             <% else %>
             <tr class="info">
             <% end %>
               <td><%= sale.user.email %></td>
-              <td> $ <%=sale.total_price %></td>
-              <td><%= sale.items %></td>
+              <td>
+                <% sale.products.each do |product| %>
+                <% total += product.sale_price %>
+                <%= product.sale_title.split.first + "," %>
+                <% end %>
+              </td>
+              <td> $ <%= total %></td>
               <td>
                 <% if sale.pending %>
                   Pendiente
