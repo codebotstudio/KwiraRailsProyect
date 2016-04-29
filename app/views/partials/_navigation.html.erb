@@ -16,7 +16,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
 	        <% if user_signed_in? %>
-	        <li> Bienvenido <%= current_user.email %> </li>
+	        <li> <a href="#" class="disabled"> Bienvenido <%= current_user.email %> </a></li>
 	        <li> <%= link_to "Inicio", root_path %> </li>
 	        <li> <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %> </li>
 	        <% else %>
