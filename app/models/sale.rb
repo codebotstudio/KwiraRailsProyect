@@ -1,7 +1,7 @@
 class Sale < ActiveRecord::Base
   belongs_to :user
   after_create :save_product_id
-  after_create :save_total
+  after_save :save_total
   has_many :has_product
   has_many :products, through: :has_product
 
@@ -25,9 +25,8 @@ class Sale < ActiveRecord::Base
       item += 1
       total += product.sale_price
     end
-    self.items = item
-    self.total_price = total
-    self.save
+    self.update_columns(items: item)
+    self.update_columns(total_price: total)
   end
 
 end

@@ -59,7 +59,6 @@
 									</thead>
 
 									<tbody>
-									  <% total = 0 %>
 							          <% @sale.products.each do |product| %>
 							          	<% case product.product_type %>
 							          	<% when 1 %>
@@ -72,10 +71,9 @@
 											
 							              <td><%= product.sale_title %></td>
 							              <td>$ <%= product.sale_price %></td>
-							              <td> 1 </td>
+							              <td> 1 </td> <!-- AQUÍ SE DEBE AJUSTAR AL NUEVO PARAMETRO DE HAS MANY -->
 							              <td>$ <%= product.sale_price %> </td>
 							            </tr>
-							           <% total += product.sale_price %>
 							          <% end %>
 							        </tbody>
 								</table>
@@ -97,7 +95,7 @@
 										<span class="input-group-addon">$</span>
 										<%= number_field dinero_recibido , placeholder: "Recibo", class:"form-control" %>
 									</div>
-									<h3>Cambio: <%= dinero_recibido - total %></h3>
+									<h3>Cambio: <%= dinero_recibido %></h3>
 								</div>
 							</div>
 							<br>
