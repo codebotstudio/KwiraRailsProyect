@@ -1,23 +1,22 @@
 class Sale < ActiveRecord::Base
   belongs_to :user
-  after_create :save_product_id
   after_save :save_total
   has_many :has_product
   has_many :products, through: :has_product
 
-  #Custom setter
-  def product_id=(value)
-  	@product_id = value
+  def make_has_products(product_ids, quantities)
+    puts product_ids.to_json
+    quantities.delete("")
+    puts quantities.to_json
+    product_ids.each.with_index do |product_id, index|
+      puts "lalalala"+index.to_s
+      puts "lalalalal"+product_ids[index]
+      puts "lalalala"+quantities[index]
+      HasProduct.create(product_id: product_id, sale: self, quantity: quantities[index])
+    end
   end
 
   private
-
-  def save_product_id
-  	@product_id.each do |product_id|
-  		HasProduct.create(product_id: product_id, sale_id: self.id)
-  	end
-  end
-
   def save_total
     item = 0
     total = 0
