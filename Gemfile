@@ -16,6 +16,9 @@ gem 'carrierwave'
 # USAMOS DEVISE PARA LA AUTENTICACIÓN DE USUARIOS
 gem 'devise'
 
+# USAMOS RAILS ADMIN PARA LA CREACIÓN DE USUARIOS
+gem 'rails_admin', '~> 0.8.1'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
