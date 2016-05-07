@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424082701) do
+ActiveRecord::Schema.define(version: 20160507000613) do
 
   create_table "has_products", force: :cascade do |t|
     t.integer  "sale_id"
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "quantity"
   end
 
   add_index "has_products", ["product_id"], name: "index_has_products_on_product_id"
