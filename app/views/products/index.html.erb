@@ -7,13 +7,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h1 class="text-center top-head">Productos</h1>
-			<% tipo = 0 %>
-			<%= select(tipo, options_for_select([['Todos', 0], ['Químicos', 1], ['Jarciería', 2], ['Otros', 3]]), filter_type(tipo), :input_html => { :value => 1 }, class:"form-control") %>
-			<% if tipo < 1 %>
-			<p>Funciona!</p>
-			<% else %>
-			<p>No funciona</p>
-			<% end %>
+			
 		      <table class="table table-bordered">
 		        <thead>
 		          <tr>
