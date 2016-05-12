@@ -39,6 +39,7 @@ class SalesController < ApplicationController
         format.json { render json: @sale.errors, status: :unprocessable_entity }
       end
     end
+    @sale.save_total
   end
 
   # PATCH/PUT /sales/1

@@ -14,9 +14,9 @@ class Sale < ActiveRecord::Base
       puts "lalalala"+quantities[index]
       HasProduct.create(product_id: product_id, sale: self, quantity: quantities[index])
     end
+    self.save_total
   end
 
-  private
   def save_total
     item = 0
     total = 0
@@ -27,5 +27,6 @@ class Sale < ActiveRecord::Base
     self.update_columns(items: item)
     self.update_columns(total_price: total)
   end
+  private
 
 end
