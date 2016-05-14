@@ -5,6 +5,19 @@ class Sale < ActiveRecord::Base
   has_many :has_product
   has_many :products, through: :has_product
 
+  #scope :high_sale, -> {order("total_price DESC").limit(10)}
+
+  #scope :today, -> {where("created_at ")}
+  # Arreglar metodos TODAY
+  scope :hoy, -> { where(created_at: Date.today) }
+  scope :pendiente, -> {where(pending: true)}
+  scope :activeDate, -> { where(created_at: Date.today)}
+
+  # Método listo y funcionando
+  def self.venta_trabajador(user)
+    where(user_id: user.id)
+  end
+
   #Custom setter
   def product_id=(value)
   	@product_id = value

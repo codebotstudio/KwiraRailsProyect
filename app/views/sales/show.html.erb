@@ -21,7 +21,7 @@
 							<div class="col-md-3">
 								<div class="field">
 									<h3>Fecha:</h3>
-									<p><%= @sale.created_at %></p>
+									<p><%= @sale.created_at.in_time_zone.to_formatted_s(:long) %></p>
 								</div>
 							</div>
 							<div class="col-md-3">
