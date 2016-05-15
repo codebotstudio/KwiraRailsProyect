@@ -1,6 +1,6 @@
 class Buy < ActiveRecord::Base
   belongs_to :user
-  after_create :save_product_id
+#  after_create :save_product_id
 #  after_create :update_stock
   has_many :has_new_product
   has_many :products, through: :has_new_product
@@ -12,13 +12,21 @@ class Buy < ActiveRecord::Base
     @product_id = value
   end
 
-  private
-
-  def save_product_id
-  	@product_id.each do |product_id|
-  		HasNewProduct.create(product_id: product_id, buy_id: self.id)
-  	end
+  def make_has_new_products(product_ids, quantities)
+    puts product_ids.to_json
+    quantities.delete("")
+    puts quantities.to_json
+    product_ids.each.with_index do |product_id, index|
+      puts "lalalala"+index.to_s
+      puts "lalalalal"+product_ids[index]
+      puts "lalalala"+quantities[index]
+      HasNewProduct.create(product_id: product_id, buy: self, quantity: quantities[index])
+    end
+    
+#>>>>>>> sale-quantities
   end
+
+  private
 
 =begin
   def update_stock

@@ -28,7 +28,7 @@ class BuysController < ApplicationController
   # POST /buys.json
   def create
     @buy = Buy.new(buy_params)
-    @buy.product_id = params[:product_id]
+    @buy.make_has_new_products(params[:product_id], params[:quantity])
     respond_to do |format|
       if @buy.save
         format.html { redirect_to @buy, notice: 'Buy was successfully created.' }

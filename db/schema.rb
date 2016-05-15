@@ -10,7 +10,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20160515074422) do
+
+ActiveRecord::Schema.define(version: 20160515203344) do
 
   create_table "buys", force: :cascade do |t|
     t.integer  "user_id"
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160515074422) do
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "quantity"
   end
 
   add_index "has_new_products", ["buy_id"], name: "index_has_new_products_on_buy_id"
