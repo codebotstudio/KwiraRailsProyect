@@ -1,0 +1,91 @@
+<%= form_for(@buy) do |f| %>
+  <% if @buy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@buy.errors.count, "error") %> prohibited this buy from being saved:</h2>
+
+      <ul>
+      <% @buy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Tipo</th>
+        <th>Precio</th>
+        <th>Disponible</th>
+        <th width="15%">Cantidad</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+        <% case product.product_type %>
+        <% when 1 %>
+        <tr class="info">
+        <% when 2 %>
+        <tr class="success">
+        <% else %>
+        <tr class="warning">
+        <% end %>
+    
+          <td><%= product.sale_title %></td>
+          <td>
+            <% case product.product_type %>
+            <% when 1 %>
+            Químicos
+            <% when 2 %>
+            Jarciería
+            <% else %>
+            Otros
+            <%end%>
+          </td>
+          <td> $ <%=product.sale_price %></td>
+          <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
+          <td> <input type="decimal" class="form-control"> </td>
+          <td class="text-center"><%= check_box_tag "product_id[]", product.id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <div class="field">
+        <h3>Comentarios sobre esta compra:</h3>
+
+        <%= f.text_area :notes , placeholder: "Escribe aquí notas sobre la compra", class:"form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="field">
+        <h3>Nota:</h3>
+        <p>Recuerda que para agregar un producto nuevo, deberás registrarlo primero. <br> Ahí también puedes especificar la cantidad de entrada.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <br>
+      <%= link_to 'Cancelar Entrada', root_path, class:"btn btn-warning btn-lg btn-block field" %>
+    </div>
+    <div class="col-md-6">
+      <div class="actions">
+        <br>
+        <%= f.submit "Registrar Entrada", class:"btn btn-primary btn-lg btn-block field" %>
+      </div>
+    </div>
+  </div>
+
+
+<% end %>

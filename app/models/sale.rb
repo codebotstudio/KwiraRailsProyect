@@ -12,6 +12,7 @@ class Sale < ActiveRecord::Base
   #scope :hoy, -> { where(created_at: Date.today) }
   scope :pendiente, -> {where(pending: true)}
   scope :activeDate, -> { where(created_at: Date.today)}
+  scope :recientes, -> {order("created_at DESC")}
 
   # Método listo y funcionando
   def self.venta_trabajador(user)

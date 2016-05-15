@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
+
+      <h1 class="text-center top-head">Listado de Entradas</h1>
+
+      <%= link_to 'Registrar Nueva Entrada', new_buy_path , class:"btn btn-lg btn-success"%>
+      <br>
+      <br>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Resumen</th>
+            <th>Notes</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @buys.each do |buy| %>
+            <tr>
+              <td><%= buy.user.email %></td>
+              <td><%= buy.created_at.in_time_zone.to_formatted_s(:long) %></td>
+              <td><%= buy.items %></td>
+              <td><%= buy.notes %></td>
+              <td><%= link_to 'Ver', buy , class:"btn btn-primary btn-block" %></td>
+              <!--
+              EDITAR
+              <td><%= link_to 'Edit', edit_buy_path(buy) %></td>
+              ELIMINAR
+              <td><%= link_to 'Destroy', buy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            -->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+     
+    </div>
+  </div>
+</div>
