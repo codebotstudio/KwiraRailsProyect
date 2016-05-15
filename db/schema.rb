@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515063750) do
+ActiveRecord::Schema.define(version: 20160515074422) do
 
   create_table "buys", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20160515063750) do
 
   add_index "buys", ["product_id"], name: "index_buys_on_product_id"
   add_index "buys", ["user_id"], name: "index_buys_on_user_id"
+
+  create_table "has_new_products", force: :cascade do |t|
+    t.integer  "buy_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "has_new_products", ["buy_id"], name: "index_has_new_products_on_buy_id"
+  add_index "has_new_products", ["product_id"], name: "index_has_new_products_on_product_id"
 
   create_table "has_products", force: :cascade do |t|
     t.integer  "sale_id"

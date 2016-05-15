@@ -17,3 +17,73 @@
 
 <%= link_to 'Edit', edit_buy_path(@buy) %> |
 <%= link_to 'Back', buys_path %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="well">
+				<div class="row">
+					<div class="col-md-12">
+						
+						<h1 class="text-center">Detalles de la Compra</h1>
+						<hr>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="field">
+									<h3>Usuario:</h3>
+									<p><%= @buy.user.email  %></p>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="field">
+									<h3>Fecha:</h3>
+									<p><%= @buy.created_at.in_time_zone.to_formatted_s(:long) %></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Producto</th>
+											<th>Precio de compra</th>
+											<th>Cantidad</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+
+									<tbody>
+							          <% @buy.products.each do |product| %>
+							          	<% case product.product_type %>
+							          	<% when 1 %>
+							            <tr class="info">
+										<% when 2 %>
+										<tr class="success">
+										<% else %>
+										<tr class="warning">
+										<% end %>
+											
+							              <td><%= product.sale_title %></td>
+							              <td>$ <%= product.buy_price %></td>
+							              <td> 1 </td> <!-- AQUÍ SE DEBE AJUSTAR AL NUEVO PARAMETRO DE HAS MANY -->
+							              <td>$ <%= product.buy_price %> </td>
+							            </tr>
+							          <% end %>
+							        </tbody>
+								</table>
+							</div>
+						</div>
+						<!-- AÚN QUEDA LA DUDA DE PONER ESTO EN EL REGISTRO, PODRIA PONERSE Y QUE ACEPTE UN NULO -->
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<h3>Notas de la compra:</h3>
+								<p><%= @buy.notes %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
