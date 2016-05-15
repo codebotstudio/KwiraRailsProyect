@@ -7,7 +7,7 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     # No funciona @sales = Sale.hoy
-    @sales = Sale.pendiente
+    @sales = Sale.venta_trabajador(current_user)
   end
 
   # GET /sales/1
