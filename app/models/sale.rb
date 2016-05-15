@@ -1,10 +1,10 @@
 class Sale < ActiveRecord::Base
   belongs_to :user
-  after_create :save_product_id
   after_save :save_total
   has_many :has_product
   has_many :products, through: :has_product
 
+#<<<<<<< HEAD
   #scope :high_sale, -> {order("total_price DESC").limit(10)}
 
   #scope :today, -> {where("created_at ")}
@@ -26,6 +26,8 @@ class Sale < ActiveRecord::Base
   end
 =end
 
+=begin
+NO SE USA? MERGE
   #Custom setter
   def product_id=(value)
     @product_id = value
@@ -36,6 +38,20 @@ class Sale < ActiveRecord::Base
   	@product_id.each do |product_id|
   		HasProduct.create(product_id: product_id, sale_id: self.id)
   	end
+=end
+#=======
+  def make_has_products(product_ids, quantities)
+    puts product_ids.to_json
+    quantities.delete("")
+    puts quantities.to_json
+    product_ids.each.with_index do |product_id, index|
+      puts "lalalala"+index.to_s
+      puts "lalalalal"+product_ids[index]
+      puts "lalalala"+quantities[index]
+      HasProduct.create(product_id: product_id, sale: self, quantity: quantities[index])
+    end
+    self.save_total
+#>>>>>>> sale-quantities
   end
 
   def save_total
@@ -48,5 +64,6 @@ class Sale < ActiveRecord::Base
     self.update_columns(items: item)
     self.update_columns(total_price: total)
   end
+  private
 
 end

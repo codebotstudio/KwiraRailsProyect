@@ -30,7 +30,7 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
-    @sale.product_id = params[:product_id]
+    @sale.make_has_products(params[:product_id], params[:quantity])
     respond_to do |format|
       if @sale.save
         format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
@@ -40,6 +40,7 @@ class SalesController < ApplicationController
         format.json { render json: @sale.errors, status: :unprocessable_entity }
       end
     end
+    @sale.save_total
   end
 
   # PATCH/PUT /sales/1
@@ -74,7 +75,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :total_price, :items, :pending, :product_id)
+      params.require(:sale).permit(:user_id, :total_price, :items, :pending)
     end
 
   #  def set_sale_params
