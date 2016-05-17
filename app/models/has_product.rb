@@ -1,9 +1,13 @@
 class HasProduct < ActiveRecord::Base
   belongs_to :sale
   belongs_to :product
+  after_create :update_stock
 
   #after_create :update_stock
-
+  def update_stock
+  	product.units -= quantity
+  	product.save
+  end
   private
 
  # def update_stock

@@ -39,19 +39,13 @@ NO SE USA? MERGE
   		HasProduct.create(product_id: product_id, sale_id: self.id)
   	end
 =end
-#=======
   def make_has_products(product_ids, quantities)
     puts product_ids.to_json
     quantities.delete("")
     puts quantities.to_json
     product_ids.each.with_index do |product_id, index|
-      puts "lalalala"+index.to_s
-      puts "lalalalal"+product_ids[index]
-      puts "lalalala"+quantities[index]
       HasProduct.create(product_id: product_id, sale: self, quantity: quantities[index])
     end
-    self.save_total
-#>>>>>>> sale-quantities
   end
 
   def save_total

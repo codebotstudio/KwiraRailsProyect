@@ -13,28 +13,26 @@ class Buy < ActiveRecord::Base
   end
 
   def make_has_new_products(product_ids, quantities)
-    puts product_ids.to_json
     quantities.delete("")
-    puts quantities.to_json
     product_ids.each.with_index do |product_id, index|
-      puts "lalalala"+index.to_s
-      puts "lalalalal"+product_ids[index]
-      puts "lalalala"+quantities[index]
       HasNewProduct.create(product_id: product_id, buy: self, quantity: quantities[index])
     end
-    
-#>>>>>>> sale-quantities
   end
-
-  private
 
 =begin
   def update_stock
+    byebug 
   	@product_id.each do |product_id|
-  		@product = Product.find(product_id)
-  		@product.units += 1
+  		product = Product.find(product_id)
+  		product.units += 1
+      product.save
   	end
   end
 =end
+
+  private
+
+
+
 
 end
