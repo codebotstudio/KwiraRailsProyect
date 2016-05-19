@@ -11,6 +11,7 @@ class BuysController < ApplicationController
   # GET /buys/1
   # GET /buys/1.json
   def show
+    @buy = Buy.find(params[:id])
   end
 
   # GET /buys/new

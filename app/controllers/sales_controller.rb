@@ -13,7 +13,7 @@ class SalesController < ApplicationController
   # GET /sales/1
   # GET /sales/1.json
   def show
-   
+   @sale = Sale.find(params[:id])
   end
 
   # GET /sales/new
@@ -32,8 +32,11 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(sale_params)
     @sale.make_has_products(params[:product_id], params[:quantity])
+    #@sale.save
+    #@sale.save_total
     respond_to do |format|
       if @sale.save
+        #@sale.save_total
         format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
         format.json { render :show, status: :created, location: @sale }
       else
@@ -41,7 +44,6 @@ class SalesController < ApplicationController
         format.json { render json: @sale.errors, status: :unprocessable_entity }
       end
     end
-    @sale.save_total
   end
 
   # PATCH/PUT /sales/1

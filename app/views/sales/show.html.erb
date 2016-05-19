@@ -25,11 +25,11 @@
 							<div class="col-md-3">
 								<div class="field">
 									<h3>Productos:</h3>
-									<p><% prdct = 0 %>
+									<p><!--<% prdct = 0 %>
 										<% @sale.products.each do |product| %>
 											<% prdct += 1 %>
-										<% end %>
-										<%= prdct %>
+										<% end %> -->
+										<%= @sale.items %>
 									</p>
 								</div>
 							</div>
@@ -50,7 +50,7 @@
 									<thead>
 										<tr>
 											<th>Producto</th>
-											<th>Precio</th>
+											<th>Precio unitario</th>
 											<th>Cantidad</th>
 											<th>Total</th>
 										</tr>
@@ -66,11 +66,11 @@
 										<% else %>
 										<tr class="warning">
 										<% end %>
-											
-							              <td><%= product.sale_title %></td>
-							              <td>$ <%= product.sale_price %></td>
-							              <td> 1 </td> <!-- AQUÍ SE DEBE AJUSTAR AL NUEVO PARAMETRO DE HAS MANY -->
-							              <td>$ <%= product.sale_price %> </td>
+										  <% cantidad = @sale.toma_detalle(product) %>
+										  <td><%= product.sale_title %></td>
+							              <td>$ <%= product.sale_price.to_s + " " + product.measurement_unit %></td>
+							              <td><%= cantidad.to_s + " " + product.measurement_unit %></td> <!-- AQUÍ SE DEBE AJUSTAR AL NUEVO PARAMETRO DE HAS MANY -->
+							              <td>$ <%= product.sale_price * cantidad %> </td>
 							            </tr>
 							          <% end %>
 							        </tbody>

@@ -48,16 +48,26 @@ NO SE USA? MERGE
     end
   end
 
+# Según yo esto esta bien
   def save_total
     item = 0
     total = 0
-    self.products.each do |product|
+    self.products.each do |prdct|
       item += 1
-      total += product.sale_price
+      a = HasProduct.where("sale_id = ? AND product_id = ?", self, prdct).first
+      b = Product.find(prdct)
+      total += (a.quantity * b.sale_price)
     end
-    self.update_columns(items: item)
-    self.update_columns(total_price: total)
+    self.total_price = total
+    self.items = item
+    self.update_columns(total_price: total, items: item)
   end
+
+  def toma_detalle(b)
+    a = HasProduct.where("sale_id = ? AND product_id = ?", self, b).first
+    return a.quantity
+  end
+  
   private
 
 end

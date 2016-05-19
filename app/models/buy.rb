@@ -29,6 +29,11 @@ class Buy < ActiveRecord::Base
   	end
   end
 =end
+  
+  def toma_detalle(b)
+    a = HasNewProduct.where("buy_id = ? AND product_id = ?", self, b).first
+    return a.quantity
+  end
 
   private
 

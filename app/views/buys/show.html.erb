@@ -30,9 +30,8 @@
 									<thead>
 										<tr>
 											<th>Producto</th>
-											<th>Precio de compra</th>
-											<th>Cantidad</th>
-											<th>Total</th>
+											<th>Cantidad comprada</th>
+											<th>Cantidad del producto en bodega</th>
 										</tr>
 									</thead>
 
@@ -46,11 +45,10 @@
 										<% else %>
 										<tr class="warning">
 										<% end %>
-											
+										  <% cantidad = @buy.toma_detalle(product) %>
 							              <td><%= product.sale_title %></td>
-							              <td>$ <%= product.buy_price %></td>
-							              <td> 1 </td> <!-- AQUÍ SE DEBE AJUSTAR AL NUEVO PARAMETRO DE HAS MANY -->
-							              <td>$ <%= product.buy_price %> </td>
+							              <td><%= cantidad.to_s + " " + product.measurement_unit %></td>
+							              <td> <%= product.units.to_s + " " + product.measurement_unit %> </td> <!-- AQUÍ SE DEBE AJUSTAR AL NUEVO PARAMETRO DE HAS MANY -->
 							            </tr>
 							          <% end %>
 							        </tbody>
