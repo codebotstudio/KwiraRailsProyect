@@ -14,6 +14,17 @@
   <div class="field">
     <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
+
+<!--
+  <script>
+      $(document).ready(function() {
+          $('.sel_ActList_status').change(function() {
+            $(this).parent('tr').siblings().find(".chk_ActList_select").attr("checked", "true");
+          });
+      });
+  </script>
+-->
+
   <table class="table table-bordered">
         <thead>
           <tr>
