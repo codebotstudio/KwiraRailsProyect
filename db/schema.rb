@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520040855) do
+ActiveRecord::Schema.define(version: 20160520045724) do
 
   create_table "buys", force: :cascade do |t|
     t.integer  "user_id"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160520040855) do
     t.string   "permission_level"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "schedule"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
