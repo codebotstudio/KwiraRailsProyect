@@ -56,3 +56,20 @@ input[type='checkbox'] {
 input[type='checkbox']:checked {
     background: #F7CA18;
 }
+
+.activo{
+  color: green;
+  font-family: 'Ubuntu';
+  font-weight: 500;
+}
+
+.inactivo{
+  color: red;
+  font-family: 'Ubuntu';
+  font-weight: 500;
+}
+
+h4.alineado{
+    display: inline;
+    vertical-align: top;
+}

@@ -51,10 +51,29 @@
 							</div>
 						</div>
 						<!-- AÚN QUEDA LA DUDA DE PONER ESTO EN EL REGISTRO, PODRIA PONERSE Y QUE ACEPTE UN NULO -->
-
-						<div class="field">
-							<h4>Cantidad en almacen</h4>
-							<p><%= @product.units.to_s + " " + @product.measurement_unit %></p>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="field">
+									<h4>Cantidad en almacen</h4>
+									<p><%= @product.units.to_s + " " + @product.measurement_unit %></p>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="field">
+									<h4>Cantidad crítica</h4>
+									<p><%= @product.critical.to_s + " " + @product.measurement_unit %></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="field">
+								<h4 class="alineado">Estado del producto:</h4>
+								<% if @product.active  %>
+								<h4 class="activo alineado">activo</h4>
+								<% else %>
+								<h4 class="inactivo alineado">inactivo</h4>
+								<% end %>
+							</div>
 						</div>
 					</div>
 				</div>

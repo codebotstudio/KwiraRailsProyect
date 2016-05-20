@@ -30,9 +30,19 @@
 		<h4>Descripción del producto</h4>
 		<%= f.text_area :description, placeholder: "Descripción del producto", class:"form-control" %>
 	</div>
-	<div class="field">
-		<h4>Imagen del producto</h4>
-		<%= f.file_field :image %>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="field">
+				<h4>Imagen del producto</h4>
+				<%= f.file_field :image %>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="field">
+				<h4>Cantidad crítica</h4>
+				<%= f.number_field :critical, placeholder: "Cantidad en unidades de medida", class:"form-control", step: 'any' %>
+			</div>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6">
@@ -60,6 +70,10 @@
 		<h4>Unidades de entrada</h4>
 		<%= f.text_field :units, placeholder: "Unidades de entrada", class:"form-control" %>
 	</div>
+	<!-- AQUÍ DEJAMOS EL PRODUCTO COMO 'ACTIVO' -->
+	 <div class="field">
+    <%= f.hidden_field :active, :value => true %>
+  </div>
 	<div class="row field">
 		<div class="col-md-6">
 			<%= f.submit "Guardar", class:"btn btn-primary btn-lg btn-block field" %>
