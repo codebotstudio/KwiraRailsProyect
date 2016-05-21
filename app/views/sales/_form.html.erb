@@ -15,15 +15,30 @@
     <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
 
-<!--
+
   <script>
-      $(document).ready(function() {
-          $('.sel_ActList_status').change(function() {
-            $(this).parent('tr').siblings().find(".chk_ActList_select").attr("checked", "true");
-          });
-      });
+    // check checkbox for clicked row
+    $('table').on('click', 'input[type=number]', function () {
+        $(this).closest('tr').find('input[type=checkbox]').prop('checked', true);
+    });
+
+    // remove check in inputs are empty for that row
+    $('input[type=number]').blur(function () { 
+        $('table tr').each(function () {
+            var emptyRow = true;
+            $(this).find("input[type=number]").each(function(){
+                if($(this).val().length > 0) {
+                   emptyRow = false;   
+                }
+            });        
+            if (emptyRow) {
+                $(this).find('input[type=checkbox]').prop('checked', false);
+            }
+        });
+    })
+
   </script>
--->
+
 
   <table class="table table-bordered">
         <thead>
