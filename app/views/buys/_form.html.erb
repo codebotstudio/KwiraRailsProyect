@@ -15,6 +15,35 @@
     <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
 
+  <script>
+    // check checkbox for clicked row
+    $('table').on('click', 'input[type=number]', function () {
+        $(this).closest('tr').find('input[type=checkbox]').prop('checked', true);
+    });
+
+    /*/ INICIO PRUEBA
+    $('table').ready(function () {
+        $('').closest('tr').find('input[type=number]').value = '1';
+    });
+    // FIN PRUEBA
+  */
+    // remove check in inputs are empty for that row
+    $('input[type=number]').blur(function () { 
+        $('table tr').each(function () {
+            var emptyRow = true;
+            $(this).find("input[type=number]").each(function(){
+                if($(this).val().length > 0) {
+                   emptyRow = false;   
+                }
+            });        
+            if (emptyRow) {
+                $(this).find('input[type=checkbox]').prop('checked', false);
+            }
+        });
+    })
+
+  </script>
+
   <table class="table table-bordered">
     <thead>
       <tr>
