@@ -22,12 +22,9 @@
         $(this).closest('tr').find('input[type=checkbox]').prop('checked', true);
     });
 
-    /*/ INICIO PRUEBA
-    $('table').ready(function () {
-        $('').closest('tr').find('input[type=number]').value = '1';
-    });
+    // INICIO PRUEBA
+
     // FIN PRUEBA
-  */
     // remove check in inputs are empty for that row
     $('input[type=number]').blur(function () { 
         $('table tr').each(function () {
@@ -46,7 +43,7 @@
   </script>
 
 
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="table1">
         <thead>
           <tr>
             <th>Producto</th>
