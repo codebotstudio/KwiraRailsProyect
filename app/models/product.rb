@@ -13,5 +13,7 @@ class Product < ActiveRecord::Base
 
 	scope :nuevos, -> {order("created_at DESC").limit(5)}
 
+	scope :activos, -> {where(active: true)}
+
 	
 end
