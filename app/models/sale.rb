@@ -1,6 +1,6 @@
 class Sale < ActiveRecord::Base
   belongs_to :user
-  after_save :save_total
+#  after_save :save_total
   has_many :has_product
   has_many :products, through: :has_product
 
@@ -40,12 +40,23 @@ NO SE USA? MERGE
   	end
 =end
   def make_has_products(product_ids, quantities)
+    item = 0
+    total = 0
     puts product_ids.to_json
     quantities.delete("")
     puts quantities.to_json
     product_ids.each.with_index do |product_id, index|
       HasProduct.create(product_id: product_id, sale: self, quantity: quantities[index])
     end
+    self.products.each do |prdct|
+      item += 1
+      a = HasProduct.where("sale_id = ? AND product_id = ?", self, prdct).first
+      b = Product.find(prdct)
+      total += (a.quantity * b.sale_price)
+    end
+    self.total_price = total
+    self.items = item
+    self.update_columns(total_price: total, items: item)
   end
 
 # Según yo esto esta bien
