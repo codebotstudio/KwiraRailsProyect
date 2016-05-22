@@ -10,19 +10,19 @@
 						<h1 class="text-center">Detalles de la Venta</h1>
 						<hr>
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-6 col-xs-6">
 								<div class="field">
 									<h3>Vendedor:</h3>
 									<p><%= @sale.user.email  %></p>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-6 col-xs-6">
 								<div class="field">
 									<h3>Fecha:</h3>
 									<p><%= @sale.created_at.in_time_zone.to_formatted_s(:long) %></p>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-6 col-xs-6">
 								<div class="field">
 									<h3>Productos:</h3>
 									<p><!--<% prdct = 0 %>
@@ -33,7 +33,7 @@
 									</p>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-6 col-xs-6">
 								<div class="field">
 									<h3>Estado:</h3>
 									<% if @sale.pending %>

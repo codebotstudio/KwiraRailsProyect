@@ -25,11 +25,13 @@
               <td><%= buy.user.email %></td>
               <td><%= buy.created_at.in_time_zone.to_formatted_s(:long) %></td>
               <td>
+                <% a = "" %>
                 <% buy.products.each do |product| %>
-                  <%= product.sale_title.split.first + "," %>
+                <% a += product.sale_title.split.first + "," %>
                 <% end %>
+                  <%= truncate(a, length:25) %>
               </td>
-              <td><%= buy.notes %></td>
+              <td><%= truncate(buy.notes, length:25) %></td>
               <td><%= link_to 'Ver', buy , class:"btn btn-primary btn-block" %></td>
               <!--
               EDITAR

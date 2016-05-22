@@ -29,9 +29,11 @@
             <% end %>
               <td><%= sale.user.email %></td>
               <td>
+                <% a = "" %>
                 <% sale.products.each do |product| %>
-                  <%= product.sale_title.split.first + "," %>
+                  <% a += product.sale_title.split.first + "," %>
                 <% end %>
+                <%= truncate(a, length:25) %>
               </td>
               <td> $ <%= sale.total_price %></td>
               <td>
