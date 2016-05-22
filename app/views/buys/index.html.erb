@@ -24,7 +24,11 @@
             <tr>
               <td><%= buy.user.email %></td>
               <td><%= buy.created_at.in_time_zone.to_formatted_s(:long) %></td>
-              <td><%= buy.items %></td>
+              <td>
+                <% buy.products.each do |product| %>
+                  <%= product.sale_title.split.first + "," %>
+                <% end %>
+              </td>
               <td><%= buy.notes %></td>
               <td><%= link_to 'Ver', buy , class:"btn btn-primary btn-block" %></td>
               <!--
