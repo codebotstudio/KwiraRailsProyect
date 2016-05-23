@@ -9,7 +9,7 @@ class SalesController < ApplicationController
     if current_user.permission_level == "1"
       @sales = Sale.all.venta_trabajador(current_user).recientes
     else
-      @sales = Sale.all
+      @sales = Sale.all.recientes
     end
     # No funciona @sales = Sale.hoy
   end
