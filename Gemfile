@@ -16,6 +16,8 @@ gem 'carrierwave'
 # USAMOS DEVISE PARA LA AUTENTICACIÓN DE USUARIOS
 gem 'devise'
 
+# FONT AWESOME!!!
+gem "font-awesome-rails"
 # USAMOS JQUERY-TURBOLINKS PARA USAR COFFE JAVASCRIPT
 #gem 'jquery-turbolinks'
 

@@ -43,7 +43,13 @@
     
           <td><%= product.sale_title %></td>
           <td> $ <%=product.sale_price %></td>
-          <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
+          <td> <%= product.units.to_s + " " + product.measurement_unit %>
+              <% if product.critical != nil %>
+               <% if product.units <= product.critical %>
+               <%= fa_icon "exclamation-circle", class:"rojo" %>
+               <% end %>
+              <% end %>
+          </td>
           <td class="text-center"><%= link_to 'Ver producto', product , class:"btn btn-warning" %></td>
         </tr>
       <% end %>

@@ -78,5 +78,8 @@ h4.alineado{
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
 
+.rojo{
+  color: red;
 }
