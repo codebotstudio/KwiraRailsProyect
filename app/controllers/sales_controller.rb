@@ -6,8 +6,12 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
+    if current_user.permission_level == "1"
+      @sales = Sale.all.venta_trabajador(current_user).recientes
+    else
+      @sales = Sale.all
+    end
     # No funciona @sales = Sale.hoy
-    @sales = Sale.venta_trabajador(current_user).recientes
   end
 
   # GET /sales/1
