@@ -54,8 +54,6 @@ NO SE USA? MERGE
       b = Product.find(prdct)
       total += (a.quantity * b.sale_price)
     end
-    self.total_price = total
-    self.items = item
     self.update_columns(total_price: total, items: item)
   end
 
