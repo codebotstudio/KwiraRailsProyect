@@ -7,7 +7,7 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     if current_user.permission_level == "1"
-      @sales = Sale.all.venta_trabajador(current_user).recientes
+      @sales = Sale.all.venta_trabajador(current_user).recientes.today
     else
       @sales = Sale.all.recientes.today
     end
