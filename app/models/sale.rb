@@ -7,11 +7,11 @@ class Sale < ActiveRecord::Base
 #<<<<<<< HEAD
   #scope :high_sale, -> {order("total_price DESC").limit(10)}
 
-  scope :today, -> {where("created_at >= ?", Time.zone.now.beginning_of_day)}
+  scope :today, -> {where("updated_at >= ?", Time.zone.now.beginning_of_day)}
   # Arreglar metodos TODAY
   #scope :hoy, -> { where(created_at: Date.today) }
   scope :pendiente, -> {where(pending: true)}
-  scope :recientes, -> {order("created_at DESC")}
+  scope :recientes, -> {order("updated_at DESC")}
 
   # SCOPE listo y funcionando
   def self.venta_trabajador(user)

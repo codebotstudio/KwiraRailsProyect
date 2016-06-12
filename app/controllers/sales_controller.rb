@@ -14,6 +14,10 @@ class SalesController < ApplicationController
     # No funciona @sales = Sale.hoy
   end
 
+  def pending
+    @sales = Sale.all.pendiente
+  end
+
   # GET /sales/1
   # GET /sales/1.json
   def show

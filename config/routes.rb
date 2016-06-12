@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   resources :buys
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :sales
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :products
   get '/products/list' => 'products#list'
+  resources :products
+  get '/sales/pending' => 'sales#pending'
+  resources :sales
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'

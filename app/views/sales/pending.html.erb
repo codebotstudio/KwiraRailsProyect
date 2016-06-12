@@ -3,10 +3,10 @@
     <div class="col-md-12">
       <p id="notice"><%= notice %></p>
 
-      <h1 class="text-center top-head">Ventas recientes</h1>
+      <h1 class="text-center top-head">Ventas pendientes</h1>
 
       <%= link_to 'Nueva Venta', new_sale_path , class:"btn btn-lg btn-success"%>
-      <%= link_to 'Ventas Pendientes', 'sales/pending' , class:"btn btn-lg btn-warning"%>
+      <%= link_to 'Historial de Ventas', sales_path , class:"btn btn-lg btn-primary"%>
       <br>
       <br>
      
@@ -26,10 +26,8 @@
         <tbody>
           <% @sales.each do |sale| %>
             <% if sale.pending %>
-            <% total_today += 0 %>
             <tr class="warning">
             <% else %>
-            <% total_today += sale.total_price %>
             <tr class="info">
             <% end %>
               <td><%= sale.user.email %></td>
@@ -65,13 +63,6 @@
 
 
      
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h2>Total de ventas de hoy: $<%= total_today %></h2>
-      <h4>Nota: El total no incluye las ventas pendientes</h4>
     </div>
   </div>
 </div>
