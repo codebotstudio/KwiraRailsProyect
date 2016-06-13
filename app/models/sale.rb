@@ -13,9 +13,14 @@ class Sale < ActiveRecord::Base
   scope :pendiente, -> {where(pending: true)}
   scope :recientes, -> {order("updated_at DESC")}
 
+
   # SCOPE listo y funcionando
   def self.venta_trabajador(user)
     where(user_id: user.id)
+  end
+
+  def self.ventas_entre(start, finish)
+    where(updated_at: start.to_date.beginning_of_day..finish.to_date.end_of_day)
   end
 
   # Método para ventas entre fechas 

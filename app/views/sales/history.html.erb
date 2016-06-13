@@ -15,7 +15,16 @@
         </div>
         <div class="col-md-6 col-sm-6">
           <br><br>
-          <div class="input-group">
+
+        <script>
+          $('.input-group.input-daterange').datepicker({
+              format: "dd/mm/yyyy",
+              language: "es",
+              todayHighlight: true
+          });
+        </script>
+
+          <div class="input-group input-daterange" id="datepicker">
               <span class="input-group-addon">Del</span>
               <%= text_field_tag 'start', nil, :data => {:provide => "datepicker"}, class:"form-control" %>
               <!--<input type="text" data-provide='datepicker' class="form-control">-->
