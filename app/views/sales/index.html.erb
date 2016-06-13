@@ -4,10 +4,16 @@
       <p id="notice"><%= notice %></p>
 
       <h1 class="text-center top-head">Ventas recientes</h1>
-
       <%= link_to 'Nueva Venta', new_sale_path , class:"btn btn-lg btn-success"%>
-      <%= link_to 'Ventas Pendientes', 'sales/pending' , class:"btn btn-lg btn-warning"%>
+      <%= link_to 'Ventas Pendientes', sales_pending_path , class:"btn btn-lg btn-warning"%>
+      <% if user_signed_in? %>
+        <% if current_user.permission_level == "1" %>
+        <% else %>
+          <%= link_to 'Historial de ventas', 'sales/history', class:"btn btn-lg btn-info" %>
+        <% end %>
+      <% end %>
       <br>
+
       <br>
      
 

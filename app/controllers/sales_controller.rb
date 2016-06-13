@@ -14,6 +14,10 @@ class SalesController < ApplicationController
     # No funciona @sales = Sale.hoy
   end
 
+  def history
+    @sales = Sale.all
+  end
+
   def pending
     @sales = Sale.all.pendiente
   end

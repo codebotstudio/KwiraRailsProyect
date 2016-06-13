@@ -7,6 +7,12 @@
 
       <%= link_to 'Nueva Venta', new_sale_path , class:"btn btn-lg btn-success"%>
       <%= link_to 'Ventas Recientes', sales_path , class:"btn btn-lg btn-primary"%>
+      <% if user_signed_in? %>
+        <% if current_user.permission_level == "1" %>
+        <% else %>
+          <%= link_to 'Historial de ventas', sales_history_path, class:"btn btn-lg btn-info" %>
+        <% end %>
+      <% end %>
       <br>
       <br>
      

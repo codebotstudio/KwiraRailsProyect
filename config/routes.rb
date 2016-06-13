@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/products/inactive' => 'products#inactive'
   get '/products/list' => 'products#list'
   resources :products
+    
+  get '/sales/history' => 'sales#history'
   get '/sales/pending' => 'sales#pending'
   resources :sales
 
