@@ -4,7 +4,12 @@ class ProductsController < ApplicationController
 	#A esta ruta se accede cn el verbo GET y el path "/products"
 	def index
 		#Variables con @ son variables de clase y se pueden acceder desde la vista y el controlador, sin @ son inaccesibles para la vista
-		@products = Product.all
+		@products = Product.all.activos
+	end
+
+
+	def inactive
+		@products = Product.all.inactivos
 	end
 
 	# A esta ruta se accede con el verbo GET y el path "/products/:id"

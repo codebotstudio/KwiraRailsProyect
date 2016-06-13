@@ -4,7 +4,7 @@
 			<% if user_signed_in? %>
 				<% if current_user.permission_level == "1" %>
 				<% else %>
-          <%= link_to "Productos inactivos", 'products/inactive', class:"btn btn-warning btn-lg" %>
+          <%= link_to "Productos activos", products_path, class:"btn btn-primary btn-lg" %>
 					<%= link_to "Registrar nuevo producto", new_product_path(@product), class:"btn btn-success btn-lg" %>
 				<% end %>
 			<% end %>
@@ -12,7 +12,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<h1 class="text-center top-head">Productos</h1>
+			<h1 class="text-center top-head">Productos inactivos</h1>
 
 			<a href="#quimicos" class="btn btn-lg btn-info">Químicos</a>
   &nbsp;

@@ -27,12 +27,12 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.new
-    @products = Product.all
+    @products = Product.all.activos
   end
 
   # GET /sales/1/edit
   def edit
-    @products = Product.all
+    @products = Product.all.activos
   end
 
   # POST /sales

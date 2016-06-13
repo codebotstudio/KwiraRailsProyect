@@ -16,7 +16,8 @@
           <tr>
             <th>Empleado</th>
             <th>Resumen de venta</th>
-            <th>Total de venta</th>
+            <th>Fecha</th>
+            <th>Total</th>
             <th>Estado</th>
             <th colspan="2"></th>
           </tr>
@@ -32,7 +33,7 @@
             <% total_today += sale.total_price %>
             <tr class="info">
             <% end %>
-              <td><%= sale.user.email %></td>
+              <td><%= sale.user.name %></td>
               <td>
                 <% a = "" %>
                 <% sale.products.each do |product| %>
@@ -40,6 +41,7 @@
                 <% end %>
                 <%= truncate(a, length:25) %>
               </td>
+              <td><%= sale.updated_at.in_time_zone.to_formatted_s(:long) %></td>
               <td> $ <%= sale.total_price %></td>
               <td>
                 <% if sale.pending %>

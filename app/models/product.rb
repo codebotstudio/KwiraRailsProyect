@@ -15,5 +15,7 @@ class Product < ActiveRecord::Base
 
 	scope :activos, -> {where(active: true)}
 
+	scope :inactivos, -> {where(active: false)}
+
 	
 end
