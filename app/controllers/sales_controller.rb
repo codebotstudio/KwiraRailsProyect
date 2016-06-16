@@ -15,7 +15,8 @@ class SalesController < ApplicationController
   end
 
   def history
-    @sales = Sale.all
+    @sales = Sale.all.recientes.today
+    @sales = Sale.all.ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
   end
 
   def pending
