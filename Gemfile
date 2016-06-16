@@ -25,7 +25,7 @@ gem 'jquery-datatables-rails'
 # CON ESTO CARGAMOS DATE-PICKER
 gem 'bootstrap-datepicker-rails'
 # USAMOS JQUERY-TURBOLINKS PARA USAR COFFE JAVASCRIPT
-#gem 'jquery-turbolinks'
+gem 'jquery-turbolinks'
 
 # USAMOS CANCANCAN PARA DAR PERMISOS EXCLUSIVOS A USUARIOS
 gem 'cancancan', '~> 1.14'	
