@@ -19,6 +19,9 @@ gem 'devise'
 # FONT AWESOME!!!
 gem "font-awesome-rails"
 
+# DATATABLES!!!
+gem 'jquery-datatables-rails'
+
 # CON ESTO CARGAMOS DATE-PICKER
 gem 'bootstrap-datepicker-rails'
 # USAMOS JQUERY-TURBOLINKS PARA USAR COFFE JAVASCRIPT

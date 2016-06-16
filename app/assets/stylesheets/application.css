@@ -11,9 +11,10 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require_self
  *= require font-awesome
- 
+ *= require dataTables/jquery.dataTables
  *= require bootstrap-datepicker
  # Or if using bootstrap v3:
  *= require bootstrap-datepicker3
