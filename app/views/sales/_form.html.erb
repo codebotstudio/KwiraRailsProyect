@@ -24,10 +24,12 @@
   <a href="#terminar" class="btn btn-lg btn-primary">Terminar venta</a>
 
   <script>
+  $( document ).ready(function() {
     // check checkbox for clicked row
     $('table').on('click', 'input[type=number]', function () {
         $(this).closest('tr').find('input[type=checkbox]').prop('checked', true);
     });
+
 
     // INICIO PRUEBA
 
@@ -46,7 +48,7 @@
             }
         });
     })
-
+  });
   </script>
 
   <h2 id="quimicos">Químicos</h2>
