@@ -15,12 +15,6 @@
     <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
 
-  <a href="#quimicos" class="btn btn-lg btn-info">Químicos</a>
-  &nbsp;
-  <a href="#jarcieria" class="btn btn-lg btn-success">Jarciería</a>
-  &nbsp;
-  <a href="#otros" class="btn btn-lg btn-warning">Otros</a>
-  &nbsp;
   <a href="#terminar" class="btn btn-lg btn-primary">Terminar venta</a>
 
   <script>
@@ -64,7 +58,7 @@
     </thead>
 
     <tbody>
-      <% @products.quimicos.each do |product| %>
+      <% @products.each do |product| %>
         <% case product.product_type %>
         <% when 1 %>
         <tr class="info">
