@@ -5,7 +5,7 @@
 				<% if current_user.permission_level == "1" %>
 				<% else %>
           <%= link_to "Productos activos", products_path, class:"btn btn-primary btn-lg" %>
-					<%= link_to "Registrar nuevo producto", new_product_path(@product), class:"btn btn-success btn-lg" %>
+					<%= link_to "Productos críticos", products_critical_path, class:"btn btn-danger btn-lg" %>
 				<% end %>
 			<% end %>
 		</div>
@@ -14,14 +14,7 @@
 		<div class="col-md-12">
 			<h1 class="text-center top-head">Productos inactivos</h1>
 
-			<a href="#quimicos" class="btn btn-lg btn-info">Químicos</a>
-  &nbsp;
-  <a href="#jarcieria" class="btn btn-lg btn-success">Jarciería</a>
-  &nbsp;
-  <a href="#otros" class="btn btn-lg btn-warning">Otros</a>
-
-			  <h2 id="quimicos">Químicos</h2>
-  <table class="table table-bordered" id="table1">
+  <table class="table table-bordered" id="products">
     <thead>
       <tr>
         <th>Producto</th>
@@ -32,7 +25,7 @@
     </thead>
 
     <tbody>
-      <% @products.quimicos.each do |product| %>
+      <% @products.each do |product| %>
         <% case product.product_type %>
         <% when 1 %>
         <tr class="info">
@@ -56,69 +49,6 @@
       <% end %>
     </tbody>
   </table>
-
-  <h2 id="jarcieria">Jarciería</h2>
-  <table class="table table-bordered" id="table2">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th width="20%">Precio</th>
-        <th width ="20%">Disponible</th>
-        <th width="20%">Detalles</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @products.jarcieria.each do |product| %>
-        <% case product.product_type %>
-        <% when 1 %>
-        <tr class="info">
-        <% when 2 %>
-        <tr class="success">
-        <% else %>
-        <tr class="warning">
-        <% end %>
-    
-          <td><%= product.sale_title %></td>
-          <td> $ <%=product.sale_price %></td>
-          <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td class="text-center"><%= link_to 'Ver producto', product , class:"btn btn-warning" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <h2 id="otros">Otros</h2>
-  <table class="table table-bordered" id="table3">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th width="20%">Precio</th>
-        <th width ="20%">Disponible</th>
-        <th width="20%">Detalles</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @products.otros.each do |product| %>
-        <% case product.product_type %>
-        <% when 1 %>
-        <tr class="info">
-        <% when 2 %>
-        <tr class="success">
-        <% else %>
-        <tr class="warning">
-        <% end %>
-    
-          <td><%= product.sale_title %></td>
-          <td> $ <%=product.sale_price %></td>
-          <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td class="text-center"><%= link_to 'Ver producto', product , class:"btn btn-warning" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <a href="#" class="btn btn-danger ir-arriba">Arriba</a>
 
 		</div>
 	</div>

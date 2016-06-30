@@ -4,16 +4,15 @@
 			<% if user_signed_in? %>
 				<% if current_user.permission_level == "1" %>
 				<% else %>
-          <%= link_to "Productos inactivos", products_inactive_path, class:"btn btn-warning btn-lg" %>
-					<%= link_to "Productos críticos", products_critical_path, class:"btn btn-danger btn-lg" %>
+          <%= link_to "Productos activos", products_path, class:"btn btn-primary btn-lg" %>
+					<%= link_to "Productos inactivos", products_inactive_path, class:"btn btn-warning btn-lg" %>
 				<% end %>
 			<% end %>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<h1 class="text-center top-head">Productos</h1>
-
+			<h1 class="text-center top-head">Productos críticos</h1>
   <table class="table table-bordered" id="products">
     <thead>
       <tr>
@@ -49,8 +48,6 @@
       <% end %>
     </tbody>
   </table>
-
-  <a href="#" class="btn btn-danger ir-arriba">Arriba</a>
 
 		</div>
 	</div>

@@ -1,5 +1,6 @@
+<!-- 
 <%= link_to 'Edit', edit_sale_path(@sale) %> |
-<%= link_to 'Back', sales_path %>
+<%= link_to 'Back', sales_path %> -->
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -77,11 +78,19 @@
 								</table>
 							</div>
 						</div>
+						<script type="text/javascript">
+						  jQuery("#total").live("change", function(){
+						    total = <% @sale.total_price %>
+						    recibo = parseFloat(jQuery("#recibo").val());           
+						    cambio = recibo - total
+						 jQuery("#cambio").val(total.toFixed(2));   
+						 });
+						</script>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="field">
 									<h2>Total de Venta:</h2>
-									<h1>$<%= @sale.total_price %></h1>
+									<h1 id="total">$<%= @sale.total_price %></h1>
 								</div>
 							</div>
 							<% dinero_recibido = 0 %>
@@ -91,9 +100,9 @@
 									<h3>Recibo:</h3>
 									<div class="input-group">
 										<span class="input-group-addon">$</span>
-										<%= number_field dinero_recibido , placeholder: "Recibo", class:"form-control" %>
+										<input type="number" id="recibo" class="form-control">
 									</div>
-									<h3>Cambio: <%= dinero_recibido %></h3>
+									<h3>Cambio: <span id="cambio" name="cambio"></span></h3>
 								</div>
 							</div>
 							<br>

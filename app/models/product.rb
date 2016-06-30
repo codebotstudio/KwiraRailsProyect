@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
 	validates :sale_title, presence: true, uniqueness: true
 	validates :ticket_title, presence: true, uniqueness: true
 	validates :product_type, presence: true
+	validates :measurement_unit, presence: true
 	validates :buy_price, presence: true
 	mount_uploader :image, PictureUploader
 
@@ -16,6 +17,8 @@ class Product < ActiveRecord::Base
 	scope :activos, -> {where(active: true)}
 
 	scope :inactivos, -> {where(active: false)}
+
+	scope :criticos, -> {where("units <= critical")}
 
 	
 end

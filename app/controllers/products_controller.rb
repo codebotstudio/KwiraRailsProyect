@@ -12,6 +12,10 @@ class ProductsController < ApplicationController
 		@products = Product.all.inactivos
 	end
 
+	def critical
+		@products = Product.all.criticos
+	end
+
 	# A esta ruta se accede con el verbo GET y el path "/products/:id"
 	def show
 		@product = Product.find(params[:id])

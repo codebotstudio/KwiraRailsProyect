@@ -15,26 +15,19 @@
     <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
 
-  <a href="#quimicos" class="btn btn-lg btn-info">Químicos</a>
-  &nbsp;
-  <a href="#jarcieria" class="btn btn-lg btn-success">Jarciería</a>
-  &nbsp;
-  <a href="#otros" class="btn btn-lg btn-warning">Otros</a>
-  &nbsp;
   <a href="#terminar" class="btn btn-lg btn-primary">Terminar compra</a>
 
-  <script>
+ <script>
+  $( document ).ready(function() {
     // check checkbox for clicked row
     $('table').on('click', 'input[type=number]', function () {
         $(this).closest('tr').find('input[type=checkbox]').prop('checked', true);
     });
 
-    /*/ INICIO PRUEBA
-    $('table').ready(function () {
-        $('').closest('tr').find('input[type=number]').value = '1';
-    });
+
+    // INICIO PRUEBA
+
     // FIN PRUEBA
-  */
     // remove check in inputs are empty for that row
     $('input[type=number]').blur(function () { 
         $('table tr').each(function () {
@@ -49,89 +42,22 @@
             }
         });
     })
-
+  });
   </script>
 
-<h2 id="quimicos">Químicos</h2>
-  <table class="table table-bordered" id="table1">
+  <table class="table table-bordered" id="sales">
     <thead>
       <tr>
         <th>Producto</th>
         <th>Precio</th>
         <th>Disponible</th>
         <th width="15%">Cantidad</th>
-        <th colspan="1"></th>
+        <th width="10%" colspan="1"></th>
       </tr>
     </thead>
 
     <tbody>
-      <% @products.quimicos.each do |product| %>
-        <% case product.product_type %>
-        <% when 1 %>
-        <tr class="info">
-        <% when 2 %>
-        <tr class="success">
-        <% else %>
-        <tr class="warning">
-        <% end %>
-    
-          <td><%= product.sale_title %></td>
-          <td> $ <%=product.sale_price %></td>
-          <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td> <%= number_field_tag  "quantity[]", nil ,class:'form_control', step: 'any' %> </td>
-          <td class="text-center"><%= check_box_tag "product_id[]", product.id %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <h2 id="jarcieria">Jarciería</h2>
-  <table class="table table-bordered" id="table2">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Disponible</th>
-        <th width="15%">Cantidad</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @products.jarcieria.each do |product| %>
-        <% case product.product_type %>
-        <% when 1 %>
-        <tr class="info">
-        <% when 2 %>
-        <tr class="success">
-        <% else %>
-        <tr class="warning">
-        <% end %>
-    
-          <td><%= product.sale_title %></td>
-          <td> $ <%=product.sale_price %></td>
-          <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td> <%= number_field_tag  "quantity[]", nil ,class:'form_control', step: 'any' %> </td>
-          <td class="text-center"><%= check_box_tag "product_id[]", product.id %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <h2 id="otros">Otros</h2>
-  <table class="table table-bordered" id="table3">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Disponible</th>
-        <th width="15%">Cantidad</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @products.otros.each do |product| %>
+      <% @products.each do |product| %>
         <% case product.product_type %>
         <% when 1 %>
         <tr class="info">

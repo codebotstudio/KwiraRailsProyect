@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get '/products/inactive' => 'products#inactive'
+  get '/products/critical' => 'products#critical'
   get '/products/list' => 'products#list'
   resources :products
     
