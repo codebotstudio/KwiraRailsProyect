@@ -6,6 +6,7 @@
 				<% else %>
           <%= link_to "Productos activos", products_path, class:"btn btn-primary btn-lg" %>
 					<%= link_to "Productos inactivos", products_inactive_path, class:"btn btn-warning btn-lg" %>
+          <%= link_to "Enviar informe de productos críticos", {:controller => 'products', :action => 'send_critical'}, class:"btn btn-success btn-lg" %>
 				<% end %>
 			<% end %>
 		</div>

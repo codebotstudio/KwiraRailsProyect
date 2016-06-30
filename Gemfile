@@ -16,6 +16,8 @@ gem 'carrierwave'
 # USAMOS DEVISE PARA LA AUTENTICACIÓN DE USUARIOS
 gem 'devise'
 
+
+
 # FONT AWESOME!!!
 gem "font-awesome-rails"
 
@@ -62,6 +64,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  # No manda el correo, lo desplega en la pestaña del navegador
+  gem 'letter_opener'
 end
 
 

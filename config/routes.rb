@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  get :send_critical, to: 'products#send_critical', as: :send_critical
   get '/products/inactive' => 'products#inactive'
   get '/products/critical' => 'products#critical'
   get '/products/list' => 'products#list'

@@ -68,6 +68,12 @@ class ProductsController < ApplicationController
 		end
 	end
 
+	def send_critical
+		@products = Product.all.criticos
+		ProductMailer.critical_quantities(@products).deliver
+		redirect_to products_critical_path
+	end
+
 
 
 	private

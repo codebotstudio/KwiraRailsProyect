@@ -20,5 +20,7 @@ class Product < ActiveRecord::Base
 
 	scope :criticos, -> {where("units <= critical")}
 
+
+
 	
 end
