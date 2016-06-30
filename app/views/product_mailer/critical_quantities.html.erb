@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<h1>Productos próximos a agotarse:</h1>
+		<h2>Fecha: <%= Date.today %></h2>
+		<% if @products.size == 0 %>
+			<h3>Todos los productos se mantienen en buena cantidad</h3>
+		<% else %>
+			<table>
+				<thead>
+					<tr>
+						<th>Producto</th>
+						<th>Cantidad Actual</th>
+						<th>Cantidad Mínima Deseada</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @products.each do |product| %>
+						<tr>
+							<th><%= product.sale_title %></th>
+							<th><%= product.units %></th>
+							<th><%= product.critical %></th>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% end %>
+	</body>
+</html>
