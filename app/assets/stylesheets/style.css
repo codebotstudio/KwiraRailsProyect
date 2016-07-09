@@ -83,3 +83,12 @@ h4.alineado{
 .rojo{
   color: red;
 }
+
+/* --- COLORES CATEGORÍAS --- */
+
+.tipo0{
+  background-color: white;
+}
+.tipo3{
+  background-color: #2ecc71;
+}

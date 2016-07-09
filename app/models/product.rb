@@ -4,6 +4,10 @@ class Product < ActiveRecord::Base
 	validates :product_type, presence: true
 	validates :measurement_unit, presence: true
 	validates :buy_price, presence: true
+	validates :units, presence: true
+	validates :product_number, presence: true
+	validates :sale_price, presence: true
+
 	mount_uploader :image, PictureUploader
 
 	scope :quimicos, -> { where(product_type: 1)}

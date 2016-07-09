@@ -26,16 +26,62 @@
 							<h4>Nombre que aparecerá en el ticket</h4>
 							<p><%= @product.ticket_title  %></p>
 						</div>
-						<div class="field">
-							<h4>Tipo de producto</h4>
-							<% case @product.product_type %>
-							<% when 1 %>
-							<p>Químicos</p>
-							<% when 2 %>
-							<p>Jarciería</p>
-							<% else %>
-							<p>Otros</p>
-							<%end%>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="field">
+									<h4>Tipo de producto</h4>
+									<% case @product.product_type %>
+									<% when 1 %>
+									<p>Químicos</p>
+									<% when 2 %>
+									<p>Jarciería</p>
+									<% else %>
+									<p>Otros</p>
+									<%end%>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="field">
+									<h4>ID de producto</h4>
+									<p><%= @product.product_number %></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h4>Clase: <span class="kind">
+								<% case @product.kind %>
+								<% when 0 %>
+								Sin categoría
+								<% when 1 %>
+								Limpiador multiusos
+								<% when 2 %>
+								Detergente Líquido para Ropa
+								<% when 3 %>
+								Detergente Líquido para trastes
+								<% when 4 %>
+								Detergente Líquido multiusos
+								<% when 5 %>
+								Suavizante de Telas
+								<% when 6 %>
+								Aromatizante ambiental
+								<% when 7 %>
+								Productos para el cabello
+								<% when 8 %>
+								Crema humectante
+								<% when 9 %>
+								Jabón Líquido
+								<% when 10 %>
+								Cocina y Baño
+								<% when 11 %>
+								Cuidado Automotriz
+								<% when 12 %>
+								Otros
+								<% else %>
+								Sin categoría
+								<% end %>
+								</span></h4>
+							</div>
 						</div>
 						<div class="field">
 							<h4>Descripción del producto</h4>

@@ -13,18 +13,28 @@
 		<%= f.text_field :ticket_title, placeholder: "Nombre de Ticket", class:"form-control" %>
 	</div>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
+			<div class="field">
+				<h4>ID del producto</h4>
+				<%= f.number_field :product_number, placeholder: "ID", class:"form-control" %>
+			</div>
+		</div>
+		<div class="col-md-4">
 			<div class="field">
 				<h4>Tipo de producto</h4>
-				<%= f.select(:product_type, options_for_select([['Químicos', 1],['Jarciería', 2],['Otros', 3]],@product.product_type), {prompt: "Selecciona tipo de producto"}, class:"form-control" )%>
+				<%= f.select(:product_type, options_for_select([['Químicos', 1],['Jarciería', 2],['Otros', 3]],@product.product_type), {}, class:"form-control" )%>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<div class="field">
 				<h4>Unidad de medida</h4>
-				<%= f.select(:measurement_unit, options_for_select([['Litros', 'lt'], ['Kilos','kg'], ['Piezas', 'piezas']],@product.measurement_unit), {prompt: "Unidad de medida"}, {class: "form-control"}) %>
+				<%= f.select(:measurement_unit, options_for_select([['Litros', 'lt'], ['Kilos','kg'], ['Piezas', 'piezas']],@product.measurement_unit), {}, {class: "form-control"}) %>
 			</div>
 		</div>
+	</div>
+	<div class="field">
+		<h4>Sub categoría</h4>
+		<%= f.select(:kind, options_for_select([['Sin categoría', 0], ['Limpiador Multiusos Tipo',1], ['Detergente Líquido Para Ropa', 2], ['Detergente Líquido para trastes', 3], ['Detergente Líquido Multiusos',4], ['Suavizante de Telas Tipo',5], ['Aromatizante Ambiental', 6], ['Productos Para El Cabello', 7], ['Crema Humectante', 8], ['Jabón Líquido', 9], ['Cocina y Baño', 10], ['Cuidado Automotriz', 11], ['Otros', 12]],@product.kind), {}, {class: "form-control"}) %>
 	</div>
 	<div class="field">
 		<h4>Descripción del producto</h4>
