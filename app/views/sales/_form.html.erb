@@ -91,7 +91,7 @@
           <td><%= product.sale_title %></td>
           <td> $ <%=product.sale_price %></td>
           <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td> <%= number_field_tag  "quantity[]", nil ,class:'form_control', step: 'any' %> </td>
+          <td> <%= number_field_tag  "quantity[]", nil ,class:'form-control', step: 'any' %> </td>
           <td class="text-center"><%= check_box_tag "product_id[]", product.id %></td>
         </tr>
       <% end %>

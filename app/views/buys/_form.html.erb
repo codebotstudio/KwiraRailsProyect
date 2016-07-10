@@ -50,9 +50,9 @@
       <tr>
         <th>ID</th>
         <th>Producto</th>
-        <th>Precio</th>
         <th>Disponible</th>
         <th width="15%">Cantidad</th>
+        <th width='15%'>Costo unitario</th>
         <th width="10%" colspan="1"></th>
       </tr>
     </thead>
@@ -90,9 +90,9 @@
           
           <td><%= product.product_number %></td>
           <td><%= product.sale_title %></td>
-          <td> $ <%=product.sale_price %></td>
           <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td> <%= number_field_tag  "quantity[]", nil ,class:'form_control', step: 'any' %> </td>
+          <td> <%= number_field_tag  "quantity[]", nil ,class:'form-control', step: 'any' %> </td>
+          <td><%= number_field_tag "buy_price[]", nil, class:'form-control' %></td>
           <td class="text-center"><%= check_box_tag "product_id[]", product.id %></td>
         </tr>
       <% end %>

@@ -12,10 +12,11 @@ class Buy < ActiveRecord::Base
     @product_id = value
   end
 
-  def make_has_new_products(product_ids, quantities)
+  def make_has_new_products(product_ids, quantities, buy_prices)
     quantities.delete("")
+    buy_prices.delete("")
     product_ids.each.with_index do |product_id, index|
-      HasNewProduct.create(product_id: product_id, buy: self, quantity: quantities[index])
+      HasNewProduct.create(product_id: product_id, buy: self, quantity: quantities[index], buy_price: buy_prices[index])
     end
   end
 
@@ -33,6 +34,11 @@ class Buy < ActiveRecord::Base
   def toma_detalle(b)
     a = HasNewProduct.where("buy_id = ? AND product_id = ?", self, b).first
     return a.quantity
+  end
+
+  def toma_costo(b)
+    a = HasNewProduct.where("buy_id = ? AND product_id = ?", self, b).first
+    return a.buy_price
   end
 
   private

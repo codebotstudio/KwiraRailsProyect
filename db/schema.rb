@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709165250) do
+ActiveRecord::Schema.define(version: 20160709182531) do
 
   create_table "buys", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160709165250) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float    "quantity"
+    t.float    "buy_price"
   end
 
   add_index "has_new_products", ["buy_id"], name: "index_has_new_products_on_buy_id"
