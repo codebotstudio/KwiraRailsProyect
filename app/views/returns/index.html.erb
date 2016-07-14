@@ -1,3 +1,117 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
+
+      <h1 class="text-center top-head">Devoluciones</h1>
+
+      <%= link_to 'Nueva Venta', new_sale_path , class:"btn btn-lg btn-success"%>
+      <%= link_to 'Ventas Recientes', sales_path , class:"btn btn-lg btn-primary"%>
+      <%= link_to 'Ventas Pendientes', sales_pending_path, class:"btn btn-lg btn-warning" %>
+      <br>
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <h2>Busca la venta a devolver:</h2>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <br><br>
+
+        <script>
+        $( document ).ready(function() {
+          $('.input-group.input-daterange').datepicker({
+              format: "dd/mm/yyyy",
+              language: "es",
+              todayHighlight: true
+          });
+        });
+        </script>
+
+          <%= form_tag({controller: "sales", action: "history"}, method: "get") do %>
+          <div class="input-group input-daterange" id="datepicker">
+              <span class="input-group-addon">Del</span>
+              <%= text_field_tag 'start', nil, :data => {:provide => "datepicker"}, class:"form-control" %>
+              <!--<input type="text" data-provide='datepicker' class="form-control">-->
+              <span class="input-group-addon">al</span>
+              <%= text_field_tag 'finish', nil, :data => {:provide => "datepicker"}, class:"form-control" %>
+              <!--<input type="text" data-provide='datepicker' class="form-control">-->
+              <span class="input-group-btn">
+              <%= submit_tag "Buscar", class:"btn btn-primary" %>
+              </span>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+
+
+          <% if @sales.size == 0 %>
+            <h2>No hay ventas registradas entre las fechas consultadas</h2>
+          <% else %>
+
+          <br><br>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Empleado</th>
+                <th>Resumen de venta</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th colspan="1"></th>
+              </tr>
+            </thead> 
+
+              <% total_between = 0 %> <!-- INICIALIZAMOS LA VARIABLE DEL TOTAL -->
+            <tbody>
+              <% @sales.each do |sale| %>
+                <% if sale.pending %>
+                <% total_between += 0 %>
+                <tr class="warning">
+                <% else %>
+                <% total_between += sale.total_price %>
+                <tr class="info">
+                <% end %>
+                  <td><%= sale.user.name %></td>
+                  <td>
+                    <% a = "" %>
+                    <% sale.products.each do |product| %>
+                      <% a += product.sale_title.split.first + ", " %>
+                    <% end %>
+                    <%= truncate(a, length:25) %>
+                  </td>
+                  <td><%= sale.updated_at.in_time_zone.to_formatted_s(:long) %></td>
+                  <td> $ <%= sale.total_price %></td>
+                  <td>
+                    <% if sale.pending %>
+                      Pendiente
+                    <% else %>
+                      Completada
+                    <% end %>
+                  </td>
+                  <td class="text-center"><%= link_to 'Detalles', sale , class:"btn btn-info" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="text-center">
+            <h2>El total de ventas entre las fechas consultadas es: </h2>
+            <h1>$<%= total_between %></h1>
+            <h4>Nota: El total no incluye las ventas pendientes</h4>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Returns</h1>
