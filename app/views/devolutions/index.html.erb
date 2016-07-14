@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
+
+      <h1 class="text-center top-head">Listado de Devoluciones</h1>
+
+      <br>
+      <br>
+      
+      <table class="table table-bordered" id="devolution">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Resumen</th>
+            <th>Motivo</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @devolutions.each do |devolution| %>
+            <tr>
+              <td><%= devolution.user.email %></td>
+              <td><%= devolution.created_at.in_time_zone.to_formatted_s(:long) %></td>
+              <td>
+                <% a = "" %>
+                <% devolution.products.each do |product| %>
+                <% a += product.sale_title.split.first + "," %>
+                <% end %>
+                  <%= truncate(a, length:25) %>
+              </td>
+              <td><%= truncate(devolution.reason, length:25) %></td>
+              <td><%= link_to 'Ver', devolution , class:"btn btn-primary btn-block" %></td>
+              <!--
+              EDITAR
+              <td><%= link_to 'Edit', edit_devolution_path(devolution) %></td>
+              ELIMINAR
+              <td><%= link_to 'Destroy', devolution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            -->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+     
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

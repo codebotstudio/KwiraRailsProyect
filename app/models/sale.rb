@@ -11,6 +11,7 @@ class Sale < ActiveRecord::Base
   # Arreglar metodos TODAY
   #scope :hoy, -> { where(created_at: Date.today) }
   scope :pendiente, -> {where(pending: true)}
+  scope :confirmadas, -> {where(pending: false)}
   scope :recientes, -> {order("updated_at DESC")}
 
 

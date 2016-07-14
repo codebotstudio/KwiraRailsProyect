@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :returns
+
   resources :buys
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   get '/products/critical' => 'products#critical'
   get '/products/list' => 'products#list'
   resources :products
-    
+  
+  get '/devolutions/search' => 'devolutions#search'  
+  resources :devolutions
+
   get '/sales/history' => 'sales#history'
   get '/sales/pending' => 'sales#pending'
   resources :sales

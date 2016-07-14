@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709182531) do
+ActiveRecord::Schema.define(version: 20160714230201) do
 
   create_table "buys", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 20160709182531) do
 
   add_index "buys", ["product_id"], name: "index_buys_on_product_id"
   add_index "buys", ["user_id"], name: "index_buys_on_user_id"
+
+  create_table "devolutions", force: :cascade do |t|
+    t.text     "reason"
+    t.integer  "sale_id"
+    t.float    "money_returned"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+    t.integer  "product_id"
+  end
+
+  add_index "devolutions", ["product_id"], name: "index_devolutions_on_product_id"
+  add_index "devolutions", ["user_id"], name: "index_devolutions_on_user_id"
 
   create_table "has_new_products", force: :cascade do |t|
     t.integer  "buy_id"
@@ -47,6 +60,19 @@ ActiveRecord::Schema.define(version: 20160709182531) do
 
   add_index "has_products", ["product_id"], name: "index_has_products_on_product_id"
   add_index "has_products", ["sale_id"], name: "index_has_products_on_sale_id"
+
+  create_table "has_returned_products", force: :cascade do |t|
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "return_id"
+    t.integer  "product_id"
+    t.float    "quantity"
+    t.integer  "devolution_id"
+  end
+
+  add_index "has_returned_products", ["devolution_id"], name: "index_has_returned_products_on_devolution_id"
+  add_index "has_returned_products", ["product_id"], name: "index_has_returned_products_on_product_id"
+  add_index "has_returned_products", ["return_id"], name: "index_has_returned_products_on_return_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "sale_title"

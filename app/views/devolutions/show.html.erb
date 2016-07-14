@@ -1,0 +1,97 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="well">
+				<div class="row">
+					<div class="col-md-12">
+						
+						<h1 class="text-center">Detalles de la Devolución</h1>
+						<hr>
+						<div class="row">
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="field">
+									<h3>Vendedor:</h3>
+									<p><%= @devolution.user.email  %></p>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="field">
+									<h3>Fecha:</h3>
+									<p><%= @devolution.created_at.in_time_zone.to_formatted_s(:long) %></p>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="field">
+									<%= link_to 'Ver Venta', sale_path(@devolution.sale_id), class:"btn btn-info btn-lg btn-block" %>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Producto</th>
+											<th>Precio unitario</th>
+											<th>Cantidad</th>
+											<th>Total Devuelto</th>
+										</tr>
+									</thead>
+
+									<tbody>
+							          <% @devolution.products.each do |product| %>
+							          	<% case product.kind %>
+        <% when 0 %>
+        <tr style="background-color: white">
+        <% when 1 %>
+        <tr style="background-color: #22A7F0">
+        <% when 2 %>
+        <tr class="success">
+        <% when 3 %>
+        <tr style="background-color:#2ecc71">
+        <% when 4 %>
+        <tr style="background-color:#F7CA18">
+        <% when 5 %>
+        <tr class="warning">
+        <% when 6 %>
+        <tr style="background-color:#1BA39C">
+        <% when 7 %>
+        <tr class="success">
+        <% when 8 %>
+        <tr style="background-color:#9B59B6">
+        <% when 9 %>
+        <tr style="background-color:#D2527F">
+        <% when 10 %>
+        <tr style="background-color:#95A5A6">
+        <% when 11 %>
+        <tr style="background-color: #4183D7">
+        <% else %>
+        <tr style="background-color:#F7CA18">
+        <% end %>
+			<% cantidad = @devolution.toma_detalle(product) %>
+							              <td><%= product.sale_title %></td>
+							              <td><%= product.sale_price %></td>
+							              <td><%= cantidad.to_s + " " + product.measurement_unit %></td>
+							              <td> <%= product.sale_price * cantidad %> </td> 
+							            </tr>
+							          <% end %>
+			
+							        </tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h2>Total devuelto: <%= @devolution.money_returned %></h2>
+							</div>
+						</div>
+						
+						
+						<!-- AÚN QUEDA LA DUDA DE PONER ESTO EN EL REGISTRO, PODRIA PONERSE Y QUE ACEPTE UN NULO -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

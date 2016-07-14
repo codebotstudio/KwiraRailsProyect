@@ -9,6 +9,7 @@
 							<br>
 							<%= link_to "HISTORIAL DE VENTAS", sales_path, class:"btn btn-primary btn-block btn-lg btn-high" %>
 							<br>
+							<%= link_to "DEVOLUCIONES", '/devolutions/search', class:"btn btn-danger btn-block btn-lg btn-high" %>
 					</div>
 					<% puts current_user.permission_level %>
 					<% if current_user.permission_level == '1' %>
