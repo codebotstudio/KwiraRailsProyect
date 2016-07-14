@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  reason: MyText
+  sale_id: 1
+  money_returned: 1.5
+
+two:
+  user_id: 1
+  reason: MyText
+  sale_id: 1
+  money_returned: 1.5
