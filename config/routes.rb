@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :buys
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  get '/buys/product_record' => 'buys#product_record'
+  get '/buys/list_product' => 'buys#list_product'
+  resources :buys
 
   get :send_critical, to: 'products#send_critical', as: :send_critical
   get '/products/inactive' => 'products#inactive'

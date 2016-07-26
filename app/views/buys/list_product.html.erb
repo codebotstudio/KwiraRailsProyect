@@ -1,0 +1,69 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-right">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center top-head">Buscar Producto</h1>
+
+  <table class="table table-bordered" id="products">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Producto</th>
+        <th width="20%">Precio</th>
+        <th width ="20%">Disponible</th>
+        <th width="20%">Detalles</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+        <% case product.kind %>
+        <% when 0 %>
+        <tr style="background-color: white">
+        <% when 1 %>
+        <tr style="background-color: #22A7F0">
+        <% when 2 %>
+        <tr class="success">
+        <% when 3 %>
+        <tr style="background-color:#2ecc71">
+        <% when 4 %>
+        <tr style="background-color:#F7CA18">
+        <% when 5 %>
+        <tr class="warning">
+        <% when 6 %>
+        <tr style="background-color:#1BA39C">
+        <% when 7 %>
+        <tr class="success">
+        <% when 8 %>
+        <tr style="background-color:#9B59B6">
+        <% when 9 %>
+        <tr style="background-color:#D2527F">
+        <% when 10 %>
+        <tr style="background-color:#95A5A6">
+        <% when 11 %>
+        <tr style="background-color: #4183D7">
+        <% else %>
+        <tr style="background-color:#F7CA18">
+        <% end %>
+          <td><%= product.product_number %></td>
+          <td><%= product.sale_title %></td>
+          <td> $ <%=product.sale_price %></td>
+          <td> <%= product.units.to_s + " " + product.measurement_unit %>
+              <% if product.critical != nil %>
+               <% if product.units <= product.critical %>
+               <%= fa_icon "exclamation-circle", class:"rojo" %>
+               <% end %>
+              <% end %>
+          </td>
+          <td class="text-center"><%= link_to 'Ver historial', buys_product_record_path(:id => product) , class:"btn btn-warning" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+		</div>
+	</div>
+</div>

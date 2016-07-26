@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
+
+      <h1 class="text-center top-head">Historial de compra de <%= @product.sale_title %> </h1>
+
+      <%= link_to 'Regresar', buys_list_product_path, class:"btn btn-lg btn-primary" %>
+      <br>
+      <br>
+      
+      <table class="table table-bordered" >
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Costo</th>
+            <th>Cantidad</th>
+            <th>Notas</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @buys.each do |buy| %>
+            <tr>
+              <td><%= buy.created_at.in_time_zone.to_formatted_s(:long) %></td>
+              <td>$ <%= buy.buy_price %></td>
+              <td><%= buy.quantity.to_s + " " + @product.measurement_unit.to_s %></td>
+              <td><%= truncate(buy.get_buy_info, length:25) %></td>
+              <td><%= link_to 'Ver Compra Completa', buy_path(:id => buy.buy_id) , class:"btn btn-primary btn-block" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+     
+    </div>
+  </div>
+</div>

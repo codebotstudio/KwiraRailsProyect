@@ -8,6 +8,15 @@ class BuysController < ApplicationController
     @buys = Buy.all.recientes
   end
 
+  def list_product
+    @products = Product.all.activos
+  end
+
+  def product_record
+    @product = Product.find(params[:id])
+    @buys = HasNewProduct.has_bought(@product).baratos
+  end
+
   # GET /buys/1
   # GET /buys/1.json
   def show

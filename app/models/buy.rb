@@ -6,6 +6,7 @@ class Buy < ActiveRecord::Base
   has_many :products, through: :has_new_product
 
   scope :recientes, -> {order("created_at DESC")}
+  
 
   #Custom setter
   def product_id=(value)

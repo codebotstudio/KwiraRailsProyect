@@ -3,6 +3,8 @@ class Devolution < ActiveRecord::Base
 	has_many :has_returned_product
 	has_many :products, through: :has_returned_product
 
+	scope :recientes, -> {order("created_at DESC")}
+
 	def make_returned_products(product_ids, quantities)
 		devuelto = 0
 		quantities.delete("")

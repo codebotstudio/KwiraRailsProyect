@@ -4,7 +4,7 @@ class DevolutionsController < ApplicationController
   # GET /devolutions
   # GET /devolutions.json
   def index
-    @devolutions = Devolution.all
+    @devolutions = Devolution.all.recientes
   end
 
   def search
