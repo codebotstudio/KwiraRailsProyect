@@ -16,8 +16,9 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
 	        <% if user_signed_in? %>
-	        <li> <a href="#" class="disabled"> Bienvenido <%= current_user.name %> </a></li>
-	        <li> <%= link_to "Inicio", root_path %> </li>
+	        <% sucursal = Store.find(current_user.store_id) %>
+	        <li> <a href="#" class="disabled"><%= current_user.name %> </a></li>
+	        <li> <a href="#" class="disabled">Sucursal <%= sucursal.name %></a> </li>
 	        <li> <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %> </li>
 	        <% else %>
 	        <li> <%= link_to "Inicio", root_path %> </li>

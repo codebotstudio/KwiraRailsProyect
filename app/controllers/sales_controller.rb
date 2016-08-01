@@ -27,6 +27,7 @@ class SalesController < ApplicationController
   # GET /sales/1.json
   def show
    @sale = Sale.find(params[:id])
+   @store = Store.find(@sale.store_id)
   end
 
   # GET /sales/new
