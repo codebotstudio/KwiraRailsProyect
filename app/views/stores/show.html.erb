@@ -61,7 +61,7 @@
 						</div>
 						<div class="col-md-4">
 							<h3>Vendedores:</h3>
-							<% seller = User.where(store_id: @store, permission_level: "2") %>
+							<% seller = User.where(store_id: @store, permission_level: "1") %>
 							<% seller.each do |vend| %>
 								<p><%= vend.name %></p>
 							<% end %>
