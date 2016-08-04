@@ -5,11 +5,13 @@ class BuysController < ApplicationController
   # GET /buys
   # GET /buys.json
   def index
-    @buys = Buy.all.recientes
+    @buys = Buy.all.recientes.where(store_id: current_user.store_id)
   end
 
   def list_product
-    @products = Product.all.activos
+    @store = Store.find(current_user.store_id)
+    @store = Store.find(params[:id]) if (params[:id]).present?
+    @products = Product.all.activos.where(store_id: @store)
   end
 
   def product_record
@@ -21,17 +23,20 @@ class BuysController < ApplicationController
   # GET /buys/1.json
   def show
     @buy = Buy.find(params[:id])
+    @store = Store.find(@buy.store_id)
   end
 
   # GET /buys/new
   def new
+    @store = Store.find(current_user.store_id)
+    @store = Store.find(params[:id]) if (params[:id]).present?
     @buy = Buy.new
-    @products = Product.all 
+    @products = Product.all.where(store_id: @store)
   end
 
   # GET /buys/1/edit
   def edit
-    @products = Product.all
+    @products = Product.all.where(store_id: current_user.store_id)
   end
 
   # POST /buys
@@ -82,6 +87,6 @@ class BuysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def buy_params
-      params.require(:buy).permit(:user_id, :items, :notes, :product_id)
+      params.require(:buy).permit(:user_id, :items, :notes, :product_id, :store_id)
     end
 end

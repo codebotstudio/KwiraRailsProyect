@@ -12,6 +12,7 @@
 				<thead>
 					<tr>
 						<th>Producto</th>
+						<th>Sucursal</th>
 						<th>Cantidad Actual</th>
 						<th>Cantidad Mínima Deseada</th>
 					</tr>
@@ -20,6 +21,7 @@
 					<% @products.each do |product| %>
 						<tr>
 							<th><%= product.sale_title %></th>
+							<th><%= Store.find(product.store_id).name %></th>
 							<th><%= product.units %></th>
 							<th><%= product.critical %></th>
 						</tr>

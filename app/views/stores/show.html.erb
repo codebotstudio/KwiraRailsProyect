@@ -1,0 +1,81 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center top-head">Sucursal <%= @store.name %></h1>
+			<div class="row">
+				<div class="col-md-6">
+					<%= link_to "HISTORIAL DE VENTAS", stores_sales_path(:id => @store), class:"btn btn-success btn-block btn-lg btn-high" %>
+					<br>
+					<%= link_to "VER ENTRADAS", stores_buys_path(:id => @store), class:"btn btn-primary btn-block btn-lg btn-high" %>
+					<br>
+				</div>
+				<div class="col-md-6">
+					<%= link_to "CONSULTAR PRODUCTOS", stores_products_path(:id => @store), class:"btn btn-info btn-block btn-lg btn-high" %>
+					<br>
+					<%= link_to "ADMINISTRAR USUARIOS", stores_users_path(:id => @store), class:"btn btn-warning btn-block btn-lg btn-high" %>
+					<br>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Información de la sucursal:</h2>
+					<div class="row">
+						<div class="col-md-3">
+							<h3>Nombre de sucursal:</h3>
+							<p><%= @store.name %></p>
+						</div>
+						<div class="col-md-3">
+							<h3>Dirección:</h3>
+							<p><%= @store.address %></p>
+						</div>
+						<div class="col-md-3">
+							<h3>Administrador:</h3>
+							<% admins = User.where(store_id: @store, permission_level: "admin") %>
+							<% a = "" %>
+							<% admins.each do |admin| %>
+								<% a += admin.name + ", " %>
+							<% end %>
+							<p><%= a %></p>
+						</div>
+						<div class="col-md-3">
+							<h3>Teléfonos:</h3>
+							<p><%= @store.phone.to_s %></p>
+							<p><%= @store.phone2.to_s %></p>
+						</div>
+					</div>
+					<div class="row">
+						<h2>Empleados:</h2>
+						<div class="col-md-4">
+							<h3>Administradores:</h3>
+							<% admins = User.where(store_id: @store, permission_level: "admin") %>
+							<% admins.each do |admin| %>
+								<p><%= admin.name %></p>
+							<% end %>
+						</div>
+						<div class="col-md-4">
+							<h3>Supervisores:</h3>
+							<% supr = User.where(store_id: @store, permission_level: "2") %>
+							<% supr.each do |supervisor| %>
+								<p><%= supervisor.name %></p>
+							<% end %>
+						</div>
+						<div class="col-md-4">
+							<h3>Vendedores:</h3>
+							<% seller = User.where(store_id: @store, permission_level: "2") %>
+							<% seller.each do |vend| %>
+								<p><%= vend.name %></p>
+							<% end %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 text-right">
+							<br>
+							<%= link_to "Editar Sucursal", edit_store_path, class:"btn btn-success" %>
+							<br><br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -86,9 +86,9 @@
         <% end %>
         <% cantidad = @sale.toma_detalle(product) %>
 							              <td><%= product.sale_title %></td>
-							              <td><%= product.sale_price %></td>
+							              <td>$<%= product.sale_price %></td>
 							              <td><%= cantidad.to_s + " " + product.measurement_unit %></td>
-							              <td> <%= product.sale_price * cantidad %> </td> 
+							              <td>$<%= product.sale_price * cantidad %> </td> 
 							            </tr>
 							          <% end %>
 							        </tbody>

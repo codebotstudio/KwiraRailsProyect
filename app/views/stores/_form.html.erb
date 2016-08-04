@@ -1,0 +1,42 @@
+<%= form_for(@store) do |f| %>
+	<% @store.errors.full_messages.each do |message| %>
+	<div class="alert alert-danger" role="alert">
+		* <%= message %>
+	</div>
+	<%end%>
+	<div class="field">
+		<h4>Nombre de Sucursal</h4>
+		<%= f.text_field :name, placeholder: "Nombre de Sucursal", class:"form-control" %>
+	</div>
+	<div class="field">
+		<h4>Dirección de la sucursal</h4>
+		<%= f.text_area :address, placeholder: "Dirección", class:"form-control" %>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="field">
+				<h4>Teléfono 1</h4>
+				<%= f.text_field :phone, placeholder: "Teléfono 1", class:"form-control" %>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="field">
+				<h4>Teléfono 2</h4>
+				<%= f.text_field :phone2, placeholder: "Teléfono 2", class:"form-control" %>
+			</div>
+		</div>
+	</div>
+	<div class="field">
+		<h4>Tipo de Venta</h4>
+		<%= f.select(:wholesale, options_for_select([['Mayoreo y menudeo', true], ['Solo menudeo', false]],@store.wholesale), {}, {class: "form-control"}) %>
+	</div>
+
+	<div class="row field">
+		<div class="col-md-6">
+			<%= f.submit "Guardar", class:"btn btn-primary btn-lg btn-block field" %>
+		</div>
+		<div class="col-md-6">
+			<%= link_to "Cancelar", products_path(@product), class:"btn btn-info btn-lg btn-block field" %>
+		</div>
+	</div>
+<%end%>

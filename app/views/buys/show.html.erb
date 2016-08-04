@@ -15,13 +15,19 @@
 							<div class="col-md-3 col-sm-6 col-xs-6">
 								<div class="field">
 									<h3>Usuario:</h3>
-									<p><%= @buy.user.email  %></p>
+									<p><%= @buy.user.name  %></p>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-6 col-xs-6">
 								<div class="field">
 									<h3>Fecha:</h3>
 									<p><%= @buy.created_at.in_time_zone.to_formatted_s(:long) %></p>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="field">
+									<h3>Sucursal:</h3>
+									<p><%= @store.name %></p>
 								</div>
 							</div>
 						</div>

@@ -5,6 +5,10 @@
 	</div>
 	<%end%>
 	<div class="field">
+		<h4>Sucursal</h4>
+		<%= f.select(:store_id, options_from_collection_for_select(Store.all, :id, :name), {}, {class: "form-control"}) %>
+	</div>
+	<div class="field">
 		<h4>Nombre de Venta</h4>
 		<%= f.text_field :sale_title, placeholder: "Nombre de venta", class:"form-control" %>
 	</div>

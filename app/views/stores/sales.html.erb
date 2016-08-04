@@ -2,18 +2,12 @@
   <div class="row">
     <div class="col-md-12">
       <p id="notice"><%= notice %></p>
-
-      <h1 class="text-center">Ventas pendientes</h1>
-
-      <%= link_to 'Nueva Venta', new_sale_path , class:"btn btn-lg btn-success"%>
-      <%= link_to 'Ventas Recientes', sales_path , class:"btn btn-lg btn-primary"%>
-      <% if user_signed_in? %>
-        <% if current_user.permission_level == "1" %>
-        <% else %>
-          <%= link_to 'Historial de ventas', sales_history_path, class:"btn btn-lg btn-info" %>
-        <% end %>
-      <% end %>
+      <h1 class="text-center">Sucursal <%= @store.name %></h1>
+      <h1 class="text-center">Ventas recientes</h1>
+      <%= link_to 'Ventas Pendientes', stores_pending_path(:id => @store) , class:"btn btn-lg btn-warning"%>
+      <%= link_to 'Historial de ventas', stores_history_path(:id => @store), class:"btn btn-lg btn-info" %>
       <br>
+
       <br>
      
 
@@ -33,8 +27,10 @@
         <tbody>
           <% @sales.each do |sale| %>
             <% if sale.pending %>
+            <% total_today += 0 %>
             <tr class="warning">
             <% else %>
+            <% total_today += sale.total_price %>
             <tr class="info">
             <% end %>
               <td><%= sale.user.name %></td>
@@ -71,6 +67,13 @@
 
 
      
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>Total de ventas de hoy: $<%= total_today %></h2>
+      <h4>Nota: El total no incluye las ventas pendientes</h4>
     </div>
   </div>
 </div>

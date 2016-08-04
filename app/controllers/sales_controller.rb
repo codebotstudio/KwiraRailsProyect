@@ -7,20 +7,20 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     if current_user.permission_level == "1"
-      @sales = Sale.all.venta_trabajador(current_user).recientes.today
+      @sales = Sale.all.where(store_id: current_user.store_id).venta_trabajador(current_user).recientes.today
     else
-      @sales = Sale.all.recientes.today
+      @sales = Sale.all.where(store_id: current_user.store_id).recientes.today
     end
     # No funciona @sales = Sale.hoy
   end
 
   def history
-    @sales = Sale.all.recientes.today
-    @sales = Sale.all.ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
+    @sales = Sale.all.where(store_id: current_user.store_id).recientes.today
+    @sales = Sale.all.where(store_id: current_user.store_id).ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
   end
 
   def pending
-    @sales = Sale.all.pendiente
+    @sales = Sale.all.where(store_id: current_user.store_id).pendiente
   end
 
   # GET /sales/1
@@ -33,12 +33,12 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.new
-    @products = Product.all.activos
+    @products = Product.all.where(store_id: current_user.store_id).activos
   end
 
   # GET /sales/1/edit
   def edit
-    @products = Product.all.activos
+    @products = Product.all.where(store_id: current_user.store_id).activos
   end
 
   # POST /sales
@@ -92,7 +92,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :total_price, :items, :pending)
+      params.require(:sale).permit(:user_id, :total_price, :items, :pending, :store_id)
     end
 
   #  def set_sale_params

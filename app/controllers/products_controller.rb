@@ -4,16 +4,16 @@ class ProductsController < ApplicationController
 	#A esta ruta se accede cn el verbo GET y el path "/products"
 	def index
 		#Variables con @ son variables de clase y se pueden acceder desde la vista y el controlador, sin @ son inaccesibles para la vista
-		@products = Product.all.activos
+		@products = Product.all.activos.where(store_id: current_user.store_id)
 	end
 
 
 	def inactive
-		@products = Product.all.inactivos
+		@products = Product.all.inactivos.where(store_id: current_user.store_id)
 	end
 
 	def critical
-		@products = Product.all.criticos
+		@products = Product.all.criticos.where(store_id: current_user.store_id)
 	end
 
 	# A esta ruta se accede con el verbo GET y el path "/products/:id"
@@ -84,7 +84,7 @@ class ProductsController < ApplicationController
 
 
 	def product_params
-		params.require(:product).permit(:sale_title, :ticket_title, :sale_price, :buy_price, :units, :description, :measurement_unit, :product_type, :image, :critical, :active, :product_number, :kind)
+		params.require(:product).permit(:sale_title, :ticket_title, :sale_price, :buy_price, :units, :description, :measurement_unit, :product_type, :image, :critical, :active, :product_number, :kind, :store_id)
 	end
 
 end

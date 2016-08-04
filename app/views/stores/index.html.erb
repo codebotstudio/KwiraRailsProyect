@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center top-head">Sucursales</h1>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Sucursal</th>
+						<th>Administrador</th>
+						<th colspan="1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @stores.each do |store| %>
+						<tr>
+							<td><%= store.name %></td>
+							<% admins = User.where(store_id: store, permission_level: "admin") %>
+							<% a = "" %>
+							<% admins.each do |admin| %>
+								<% a += admin.name + ", " %>
+							<% end %>
+							<td><%= a %></td>
+							<td class="text-center"><%= link_to "Inspeccionar", store, class:"btn btn-info" %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<div class="row">
+				<div class="col-md-12 text-right">
+					<%= link_to "Registrar nueva Sucursal", new_store_path, class:"btn btn-success" %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

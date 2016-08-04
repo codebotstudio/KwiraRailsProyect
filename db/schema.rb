@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801071136) do
+ActiveRecord::Schema.define(version: 20160803222831) do
 
   create_table "buys", force: :cascade do |t|
     t.integer  "user_id"
@@ -130,6 +130,8 @@ ActiveRecord::Schema.define(version: 20160801071136) do
     t.boolean  "wholesale"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "phone"
+    t.string   "phone2"
   end
 
   create_table "users", force: :cascade do |t|
@@ -149,6 +151,7 @@ ActiveRecord::Schema.define(version: 20160801071136) do
     t.datetime "updated_at",                          null: false
     t.integer  "schedule"
     t.integer  "store_id"
+    t.boolean  "status"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

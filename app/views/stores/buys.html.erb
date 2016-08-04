@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-md-12">
       <p id="notice"><%= notice %></p>
+      <h1 class="text-center">Sucursal <%= @store.name %></h1>
+      <h1 class="text-center">Listado de Entradas</h1>
 
-      <h1 class="text-center top-head">Listado de Entradas</h1>
-
-      <%= link_to 'Registrar Nueva Entrada', new_buy_path , class:"btn btn-lg btn-success"%>
-      <%= link_to 'Buscar por producto', buys_list_product_path, class:"btn btn-lg btn-primary" %>
+      <%= link_to 'Registrar Nueva Entrada', new_buy_path(:id => @store) , class:"btn btn-lg btn-success"%>
+      <%= link_to 'Buscar por producto', buys_list_product_path(:id => @store), class:"btn btn-lg btn-primary" %>
       <br>
       <br>
       

@@ -21,6 +21,16 @@ Rails.application.routes.draw do
   get '/sales/pending' => 'sales#pending'
   resources :sales
 
+  get '/stores/sales' => 'stores#sales'
+  get '/stores/pending' => 'stores#pending'
+  get '/stores/history' => 'stores#history'
+  get '/stores/buys' => 'stores#buys'
+  get '/stores/products' => 'stores#products'
+  get '/stores/inactive' => 'stores#inactive'
+  get '/stores/critical' => 'stores#critical'
+  get '/stores/users' => 'stores#users'
+  resources :stores
+
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
