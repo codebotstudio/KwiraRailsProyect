@@ -16,7 +16,7 @@ class SalesController < ApplicationController
 
   def history
     @sales = Sale.all.where(store_id: current_user.store_id).recientes.today
-    @sales = Sale.all.where(store_id: current_user.store_id).ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
+    @sales = Sale.all.recientes.where(store_id: current_user.store_id).ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
   end
 
   def pending

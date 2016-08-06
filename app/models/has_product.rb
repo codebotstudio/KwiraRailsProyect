@@ -6,6 +6,7 @@ class HasProduct < ActiveRecord::Base
   #after_create :update_stock
   def update_stock
   	product.units -= quantity
+  	product.units = product.units.round(2)
   	product.save
   end
   private
