@@ -59,7 +59,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<div class="field">
 				<h4>Precio de compra</h4>
 				<div class="input-group">
@@ -68,12 +68,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<div class="field">
 				<h4>Precio de venta</h4>
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
 					<%= f.number_field :sale_price, placeholder: "Precio de venta", class:"form-control", step: 'any' %>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="field">
+				<h4>Precio de mayoreo</h4>
+				<div class="input-group">
+					<span class="input-group-addon">$</span>
+					<%= f.number_field :wholesale_price, placeholder: "Precio mayoreo", class:"form-control", step: 'any' %>
 				</div>
 			</div>
 		</div>

@@ -92,16 +92,22 @@
 							<p><%= @product.description%></p>
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="field">
 									<h4>Precio de compra</h4>
 									<p>$<%= @product.buy_price%></p>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="field">
 									<h4>Precio de venta</h4>
 									<p>$<%= @product.sale_price%></p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="field">
+									<h4>Precio de mayoreo</h4>
+									<p>$<%= @product.wholesale_price%></p>
 								</div>
 							</div>
 						</div>
