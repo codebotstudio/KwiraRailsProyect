@@ -9,6 +9,22 @@
 						<h1 class="text-center">Detalles de la Devolución</h1>
 						<hr>
 						<div class="row">
+							<div class="col-md-12">
+								<h3><strong>Tipo de devolución:</strong> 
+								<% case @devolution.reason %> 
+									<% when 1 %>
+									Producto regresó al almacén
+									<% when 2 %>
+									Producto dañado
+									<% else %>
+									Sin información
+								<% end %>
+
+								</h3>
+							</div>
+						</div>
+						<br>
+						<div class="row">
 							<div class="col-md-4 col-sm-6 col-xs-6">
 								<div class="field">
 									<h3>Vendedor:</h3>
@@ -35,7 +51,7 @@
 											<th>Producto</th>
 											<th>Precio unitario</th>
 											<th>Cantidad</th>
-											<th>Total Devuelto</th>
+											<th>Dinero Devuelto</th>
 										</tr>
 									</thead>
 
@@ -73,7 +89,7 @@
 							              <td><%= product.sale_title %></td>
 							              <td><%= product.sale_price %></td>
 							              <td><%= cantidad.to_s + " " + product.measurement_unit %></td>
-							              <td> <%= product.sale_price * cantidad %> </td> 
+							              <td> $<%= product.sale_price * cantidad %> </td> 
 							            </tr>
 							          <% end %>
 			
@@ -83,7 +99,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<h2>Total devuelto: <%= @devolution.money_returned %></h2>
+								<h2>Total devuelto: $<%= @devolution.money_returned %></h2>
 							</div>
 						</div>
 						

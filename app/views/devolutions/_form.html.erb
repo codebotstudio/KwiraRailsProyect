@@ -51,8 +51,8 @@
         <th>ID</th>
         <th>Producto</th>
         <th>Precio</th>
-        <th>Disponible</th>
-        <th width="10%">Cantidad</th>
+        <th>Vendido</th>
+        <th width="10%">Devolviendo</th>
         <th width="10%" colspan="1"></th>
       </tr>
     </thead>
@@ -90,8 +90,9 @@
           <td><%= product.product_number %></td>
           <td><%= product.sale_title %></td>
           <td> $ <%=product.sale_price %></td>
-          <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td> <%= number_field_tag  "quantity[]", nil ,class:'form-control', step: 'any' %> </td>
+          <% detail = HasProduct.where(sale_id: @sale, product_id: product).first %>
+          <td> <%= detail.quantity.to_s + " " + product.measurement_unit %> </td>
+          <td> <%= number_field_tag  "quantity[]", nil, min: 0, max: detail.quantity ,class:'form-control', step: 'any' %> </td>
           <td class="text-center"><%= check_box_tag "product_id[]", product.id %></td>
         </tr>
       <% end %>
@@ -101,9 +102,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="field">
-        <h3>Motivo de devolución:</h3>
+        <h3>Tipo de devolución:</h3>
 
-        <%= f.text_area :reason , placeholder: "Escribe aquí el motivo de la devolución", class:"form-control" %>
+        <%= f.select(:reason, options_for_select([['Producto Regresa al almacén', 1], ['Producto Dañado', 2]], @devolution.reason), { placeholder: "Escribe aquí el motivo de la devolución"}, {class:"form-control"}) %>
       </div>
     </div>
 
@@ -112,12 +113,11 @@
   <div class="row">
     <div class="col-md-6">
       <br>
-      <%= link_to 'Cancelar Entrada', root_path, class:"btn btn-warning btn-lg btn-block field" %>
+      <%= link_to 'Cancelar Devolución', root_path, class:"btn btn-warning btn-lg btn-block field" %>
     </div>
     <div class="col-md-6">
-      <div class="actions">
-        <%= f.submit %>
-      </div>
+      <br>
+      <%= f.submit "Registrar Devolución", class:"btn btn-primary btn-block btn-lg" %>
     </div>
   </div>
 

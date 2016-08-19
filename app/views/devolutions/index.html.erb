@@ -22,7 +22,7 @@
         <tbody>
           <% @devolutions.each do |devolution| %>
             <tr>
-              <td><%= devolution.user.email %></td>
+              <td><%= devolution.user.name %></td>
               <td><%= devolution.created_at.in_time_zone.to_formatted_s(:long) %></td>
               <td>
                 <% a = "" %>
@@ -31,7 +31,16 @@
                 <% end %>
                   <%= truncate(a, length:25) %>
               </td>
-              <td><%= truncate(devolution.reason, length:25) %></td>
+              <td>
+                <% case devolution.reason %>
+                  <% when 1 %>
+                  Producto regresó al almacén
+                  <% when 2 %>
+                  Producto dañado
+                  <% else %>
+                  Sin información
+                <% end %>
+              </td>
               <td><%= link_to 'Ver', devolution , class:"btn btn-primary btn-block" %></td>
               <!--
               EDITAR

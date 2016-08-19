@@ -9,6 +9,20 @@ class Devolution < ActiveRecord::Base
 		devuelto = 0
 		quantities.delete("")
 		product_ids.each.with_index do |product_id, index|
+			HasReturnedProduct.create(product_id: product_id, devolution: self, quantity: quantities[index]).update_stock
+		end
+		self.products.each do |prdct|
+			a = HasReturnedProduct.where("devolution_id = ? AND product_id = ?", self, prdct).first
+			b = Product.find(prdct)
+			devuelto += (a.quantity * b.sale_price)
+		end
+		self.update_columns(money_returned: devuelto)
+	end
+
+	def make_returned_without_stock(product_ids, quantities)
+		devuelto = 0
+		quantities.delete("")
+		product_ids.each.with_index do |product_id, index|
 			HasReturnedProduct.create(product_id: product_id, devolution: self, quantity: quantities[index])
 		end
 		self.products.each do |prdct|

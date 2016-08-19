@@ -4,12 +4,12 @@ class DevolutionsController < ApplicationController
   # GET /devolutions
   # GET /devolutions.json
   def index
-    @devolutions = Devolution.all.recientes
+    @devolutions = Devolution.all.where(store_id: current_user.store_id).recientes
   end
 
   def search
-    @sales = Sale.all.confirmadas.recientes.today
-    @sales = Sale.all.confirmadas.ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
+    @sales = Sale.all.confirmadas.where(store_id: current_user.store_id).recientes.today
+    @sales = Sale.all.confirmadas.where(store_id: current_user.store_id).ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
   end
 
   # GET /devolutions/1
@@ -21,7 +21,7 @@ class DevolutionsController < ApplicationController
   def new
     @sale = Sale.find(params[:id])
     @devolution = Devolution.new
-    @products = Product.all.activos
+    @products = @sale.products
   end
 
   # GET /devolutions/1/edit
@@ -32,7 +32,11 @@ class DevolutionsController < ApplicationController
   # POST /devolutions.json
   def create
     @devolution = Devolution.new(devolution_params)
-    @devolution.make_returned_products(params[:product_id], params[:quantity])
+    if @devolution.reason == 1
+      @devolution.make_returned_products(params[:product_id], params[:quantity])
+    else
+      @devolution.make_returned_without_stock(params[:product_id], params[:quantity])
+    end
 
     respond_to do |format|
       if @devolution.save
