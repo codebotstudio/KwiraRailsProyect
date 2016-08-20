@@ -9,7 +9,7 @@ class DevolutionsController < ApplicationController
 
   def search
     @sales = Sale.all.confirmadas.where(store_id: current_user.store_id).recientes.today
-    @sales = Sale.all.confirmadas.where(store_id: current_user.store_id).ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
+    @sales = Sale.all.confirmadas.where(store_id: current_user.store_id).recientes.ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
   end
 
   # GET /devolutions/1
