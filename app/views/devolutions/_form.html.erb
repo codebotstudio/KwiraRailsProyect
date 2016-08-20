@@ -17,6 +17,21 @@
   <div class="field">
     <%= f.hidden_field :sale_id, :value => @sale.id %>
   </div>
+  <div class="field">
+    <%= f.hidden_field :store_id, :value => current_user.store_id %>
+  </div>
+  
+  <% mayoreo = @sale.wholesale %>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <% if mayoreo %>
+        <h2>Venta al Mayoreo</h2>
+      <% else %>
+        <h2>Venta al Menudeo</h2>
+      <% end %>
+    </div>
+  </div>
 
   <script>
   $( document ).ready(function() {
@@ -89,7 +104,11 @@
         <% end %>
           <td><%= product.product_number %></td>
           <td><%= product.sale_title %></td>
-          <td> $ <%=product.sale_price %></td>
+          <% if mayoreo %>
+            <td> $ <%=product.wholesale_price %></td>
+          <% else %>
+            <td> $ <%=product.sale_price %></td>
+          <% end %>
           <% detail = HasProduct.where(sale_id: @sale, product_id: product).first %>
           <td> <%= detail.quantity.to_s + " " + product.measurement_unit %> </td>
           <td> <%= number_field_tag  "quantity[]", nil, min: 0, max: detail.quantity ,class:'form-control', step: 'any' %> </td>

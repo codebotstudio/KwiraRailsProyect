@@ -28,7 +28,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-6">
 								<div class="field">
 									<h3>Vendedor:</h3>
-									<p><%= @devolution.user.email  %></p>
+									<p><%= @devolution.user.name  %></p>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6">
@@ -87,9 +87,15 @@
         <% end %>
 			<% cantidad = @devolution.toma_detalle(product) %>
 							              <td><%= product.sale_title %></td>
-							              <td><%= product.sale_price %></td>
+										<% if @sale.wholesale %>
+							              <td>$ <%= product.wholesale_price %></td>
 							              <td><%= cantidad.to_s + " " + product.measurement_unit %></td>
-							              <td> $<%= product.sale_price * cantidad %> </td> 
+							              <td> $<%= product.wholesale_price * cantidad %> </td> 
+							            <% else %>
+							            	<td><%= product.sale_price %></td>
+							              	<td><%= cantidad.to_s + " " + product.measurement_unit %></td>
+							              	<td> $<%= product.sale_price * cantidad %> </td> 
+							            <% end %>
 							            </tr>
 							          <% end %>
 			

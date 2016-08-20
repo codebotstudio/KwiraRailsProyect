@@ -15,6 +15,7 @@ class DevolutionsController < ApplicationController
   # GET /devolutions/1
   # GET /devolutions/1.json
   def show
+    @sale = Sale.find(@devolution.sale_id)
   end
 
   # GET /devolutions/new
@@ -81,6 +82,6 @@ class DevolutionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def devolution_params
-      params.require(:devolution).permit(:user_id, :reason, :sale_id, :money_returned)
+      params.require(:devolution).permit(:user_id, :reason, :sale_id, :money_returned, :store_id)
     end
 end
