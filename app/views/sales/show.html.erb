@@ -110,24 +110,20 @@
 								</table>
 							</div>
 						</div>
-						<script type="text/javascript">
-						  jQuery("#total").live("change", function(){
-						    total = <% @sale.total_price %>
-						    recibo = parseFloat(jQuery("#recibo").val());           
-						    cambio = recibo - total
-						 jQuery("#cambio").val(total.toFixed(2));   
-						 });
+						<script>
+							function() {
+								var totalVenta = <%= @sale.total_price %>;
+								document.getElementById("cambio").innerHTML = totalVenta;
+							}
 						</script>
+						
 						<div class="row">
-							<div class="col-md-12 text-center">
+							<div class="col-md-6 text-center">
 								<div class="field">
 									<h2>Total de Venta:</h2>
 									<h1 id="total">$<%= @sale.total_price %></h1>
 								</div>
-							</div>
-							<% dinero_recibido = 0 %>
-							<% cambio = 0 %>
-							<!-- 
+							</div>							
 							<div class="col-md-6">
 								<div class="field">
 									<h3>Recibo:</h3>
@@ -137,28 +133,29 @@
 									</div>
 									<h3>Cambio: <span id="cambio" name="cambio"></span></h3>
 								</div>
-							</div> -->
+							</div> 
 							<br>
+							<div class="col-md-6"></div>
 						</div>
 						<div class="row">
 							<% if @sale.pending %>
-							<div class="col-md-6">
-								<div class="field">
-									<%= link_to  "Confirmar Venta", edit_sale_path(@sale), class:"btn btn-info btn-lg btn-block" %>
+								<div class="col-md-6">
+									<div class="field">
+										<%= link_to  "Confirmar Venta", edit_sale_path(@sale), class:"btn btn-info btn-lg btn-block" %>
+									</div>
 								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="field">
-									<%= link_to "Imprimir Ticket", root_path, class:"btn btn-success btn-lg btn-block" %>
+								<div class="col-md-6">
+									<div class="field">
+										<%= link_to "Imprimir Ticket", root_path, class:"btn btn-success btn-lg btn-block" %>
+									</div>
 								</div>
-							</div>
 							<% else %>
-							<div class="col-md-6 col-md-offset-3">
-								<br>
-								<div class="field">
-									<%= link_to "Imprimir Ticket", root_path, class:"btn btn-success btn-lg btn-block" %>
+								<div class="col-md-6 col-md-offset-3">
+									<br>
+									<div class="field">
+										<%= link_to "Imprimir Ticket", root_path, class:"btn btn-success btn-lg btn-block" %>
+									</div>
 								</div>
-							</div>
 							<% end %>
 						</div>
 						<!-- AÚN QUEDA LA DUDA DE PONER ESTO EN EL REGISTRO, PODRIA PONERSE Y QUE ACEPTE UN NULO -->
