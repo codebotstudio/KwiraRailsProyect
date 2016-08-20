@@ -45,7 +45,11 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
-    @sale.make_has_products(params[:product_id], params[:quantity])
+    if @sale.wholesale == true
+      @sale.make_wholesale_products(params[:product_id], params[:quantity])
+    else
+      @sale.make_has_products(params[:product_id], params[:quantity])
+    end
     #@sale.save
     #@sale.save_total
     respond_to do |format|
@@ -92,7 +96,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :total_price, :items, :pending, :store_id)
+      params.require(:sale).permit(:user_id, :total_price, :items, :pending, :store_id, :wholesale)
     end
 
   #  def set_sale_params

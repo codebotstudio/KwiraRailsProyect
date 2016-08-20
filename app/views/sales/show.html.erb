@@ -43,6 +43,15 @@
 							</div>
 						</div>
 						<div class="row">
+							<div class="col-md-12 text-center">
+								<% if @sale.wholesale %>
+									<h2>Venta al Mayoreo</h2>
+								<% else %>
+									<h2>Venta al Menudeo</h2>
+								<% end %>
+							</div>
+						</div>
+						<div class="row">
 							<div class="col-md-8 col-md-offset-2">
 								<table class="table">
 									<thead>
@@ -86,9 +95,15 @@
         <% end %>
         <% cantidad = @sale.toma_detalle(product) %>
 							              <td><%= product.sale_title %></td>
-							              <td>$<%= product.sale_price %></td>
+							              <% if @sale.wholesale %>
+							              	<td>$<%= product.wholesale_price %></td>
+							              	<td><%= cantidad.to_s + " " + product.measurement_unit %></td>
+							              	<td>$<%= product.wholesale_price * cantidad %> </td> 
+							              <% else %>
+							              	<td>$<%= product.sale_price %></td>
 							              <td><%= cantidad.to_s + " " + product.measurement_unit %></td>
 							              <td>$<%= product.sale_price * cantidad %> </td> 
+							              <% end %>
 							            </tr>
 							          <% end %>
 							        </tbody>
@@ -104,7 +119,7 @@
 						 });
 						</script>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-12 text-center">
 								<div class="field">
 									<h2>Total de Venta:</h2>
 									<h1 id="total">$<%= @sale.total_price %></h1>

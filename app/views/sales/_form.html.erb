@@ -10,6 +10,8 @@
       </ul>
     </div>
   <% end %>
+  
+  <% mayoreo = Store.find(current_user.store_id).wholesale %>
 
   <div class="field">
     <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -52,7 +54,12 @@
       <tr>
         <th>ID</th>
         <th>Producto</th>
-        <th>Precio</th>
+        <% if mayoreo %>
+          <th>Mayoreo</th>
+          <th>Menudeo</th>
+        <% else %>
+          <th>Precio</th>
+        <% end %>
         <th>Disponible</th>
         <th width="10%">Cantidad</th>
         <th width="10%" colspan="1"></th>
@@ -91,9 +98,14 @@
         <% end %>
           <td><%= product.product_number %></td>
           <td><%= product.sale_title %></td>
-          <td> $ <%=product.sale_price %></td>
+          <% if mayoreo %>
+            <td> $ <%=product.wholesale_price %></td>
+            <td> $ <%=product.sale_price %></td>
+          <% else %>
+            <td> $ <%=product.sale_price %></td>
+          <% end %>
           <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td> <%= number_field_tag  "quantity[]", nil ,class:'form-control', step: 'any' %> </td>
+          <td> <%= number_field_tag  "quantity[]", nil , min: 0, max: product.units,class:'form-control', step: 'any' %> </td>
           <td class="text-center"><%= check_box_tag "product_id[]", product.id %></td>
         </tr>
       <% end %>
@@ -118,6 +130,19 @@
         </h2>
       </div>
     </div>
+    <% if mayoreo %>
+      <div class="col-md-6">
+        <div class="field">
+          <h2>Marcar Venta de Mayoreo:
+          <%= f.check_box :wholesale %>
+          </h2>
+        </div>
+      </div>
+    <% else %>
+      <div class="field">
+        <%= f.hidden_field :wholesale, :value => false %>
+      </div>
+    <% end %>
   </div>
   <div class="row">
     <div class="col-md-6">
