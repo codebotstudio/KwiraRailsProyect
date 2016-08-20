@@ -118,12 +118,13 @@
 						</script>
 						
 						<div class="row">
-							<div class="col-md-6 text-center">
+							<div class="col-md-12 text-center">
 								<div class="field">
 									<h2>Total de Venta:</h2>
 									<h1 id="total">$<%= @sale.total_price %></h1>
 								</div>
-							</div>							
+							</div>	
+							<!--						
 							<div class="col-md-6">
 								<div class="field">
 									<h3>Recibo:</h3>
@@ -133,9 +134,8 @@
 									</div>
 									<h3>Cambio: <span id="cambio" name="cambio"></span></h3>
 								</div>
-							</div> 
+							</div> -->
 							<br>
-							<div class="col-md-6"></div>
 						</div>
 						<div class="row">
 							<% if @sale.pending %>
