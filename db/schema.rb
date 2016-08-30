@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820064315) do
+ActiveRecord::Schema.define(version: 20160822031852) do
 
   create_table "buys", force: :cascade do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160820064315) do
     t.integer  "user_id"
     t.integer  "product_id"
     t.integer  "store_id"
+    t.text     "problem"
   end
 
   add_index "devolutions", ["product_id"], name: "index_devolutions_on_product_id"

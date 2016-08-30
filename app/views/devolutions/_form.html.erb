@@ -119,11 +119,17 @@
   </table>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="field">
         <h3>Tipo de devolución:</h3>
 
         <%= f.select(:reason, options_for_select([['Producto Regresa al almacén', 1], ['Producto Dañado', 2]], @devolution.reason), { placeholder: "Escribe aquí el motivo de la devolución"}, {class:"form-control"}) %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="field">
+        <h3>Motivo de devolución:</h3>
+        <%= f.text_area :problem , placeholder: "Escribe aquí el por qué de la devolución", class:"form-control" %>
       </div>
     </div>
 

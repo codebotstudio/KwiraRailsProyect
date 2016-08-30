@@ -82,6 +82,6 @@ class DevolutionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def devolution_params
-      params.require(:devolution).permit(:user_id, :reason, :sale_id, :money_returned, :store_id)
+      params.require(:devolution).permit(:user_id, :reason, :sale_id, :money_returned, :store_id, :problem)
     end
 end
