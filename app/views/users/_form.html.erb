@@ -44,7 +44,7 @@
               <div class="col-md-6">
                 <div class="field">
                   <h4>Estado del empleado</h4>
-                  <%= f.select(:status, options_for_select([['Activo', true], ['Inactivo', false]],@user.status), {}, {class:"form-control"}) %>
+                  <%= f.select(:status, options_for_select([['Inactivo', true], ['Activo', false]],@user.status), {}, {class:"form-control"}) %>
                 </div>
               </div>
             </div>

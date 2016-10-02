@@ -31,9 +31,9 @@
 							<td><%= user.schedule %></td>
 							<td>
 								<% if user.status %>
-								Activo
-								<% else %>
 								Inactivo
+								<% else %>
+								Activo
 								<% end %>
 							</td>
 							<td class="text-center"><%= link_to "Editar", edit_user_path(:id => user), class:"btn btn-info" %></td>
