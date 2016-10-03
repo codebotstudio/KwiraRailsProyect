@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926134616) do
+ActiveRecord::Schema.define(version: 20161003025446) do
 
   create_table "buys", force: :cascade do |t|
     t.integer  "user_id"
@@ -79,6 +79,18 @@ ActiveRecord::Schema.define(version: 20160926134616) do
   add_index "has_returned_products", ["product_id"], name: "index_has_returned_products_on_product_id"
   add_index "has_returned_products", ["return_id"], name: "index_has_returned_products_on_return_id"
 
+  create_table "has_transfered_products", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "transfer_id"
+    t.float    "quantity"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "receiver"
+  end
+
+  add_index "has_transfered_products", ["product_id"], name: "index_has_transfered_products_on_product_id"
+  add_index "has_transfered_products", ["transfer_id"], name: "index_has_transfered_products_on_transfer_id"
+
   create_table "products", force: :cascade do |t|
     t.string   "sale_title"
     t.string   "ticket_title"
@@ -138,6 +150,18 @@ ActiveRecord::Schema.define(version: 20160926134616) do
     t.string   "phone"
     t.string   "phone2"
   end
+
+  create_table "transfers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "products_id"
+    t.integer  "source"
+    t.integer  "receiver"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "transfers", ["products_id"], name: "index_transfers_on_products_id"
+  add_index "transfers", ["user_id"], name: "index_transfers_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

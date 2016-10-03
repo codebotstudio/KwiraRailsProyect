@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
+      
+
+		<h1 class="text-center top-head">Nueva Transferencia</h1>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Desde <strong><%= @source.name %></strong> hacia <strong><%= @receiver.name %></strong> </h2>
+      </div>
+    </div>
+    
+		<%= render 'form' %>
+	<!--
+		<%= link_to 'Back', sales_path %> -->
+      <a href="#" class="btn btn-danger ir-arriba"> <%= fa_icon "arrow-up" %> Arriba</a>
+    </div>
+  </div>
+</div>

@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   get '/stores/users' => 'stores#users'
   resources :stores
 
+  get '/transfers/index' => 'transfers#index'
+  get '/transfers/new' => 'transfers#new'
+  resources :transfers
+
   get '/users/new' => 'users#new'
   resources :users
 

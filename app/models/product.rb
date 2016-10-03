@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
-	validates :sale_title, presence: true, uniqueness: true
-	validates :ticket_title, presence: true, uniqueness: true
+	validates :sale_title, presence: true
+	validates :ticket_title, presence: true
 	validates :product_type, presence: true
 	validates :measurement_unit, presence: true
 	validates :buy_price, presence: true

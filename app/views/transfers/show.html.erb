@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center top-head">Transferencia de productos</h1>
+			<h2>Desde <strong><%= @source.name %></strong> hacia <strong><%= @receiver.name %></strong></h2>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Producto</th>
+								<th>Cantidad comprada</th>
+								<th>Cantidad del producto en bodega destino</th>
+								<th>Costo en precio mayoreo</th>
+							</tr>
+						</thead>
+
+						<tbody>
+				          <% @transfer.products.each do |product| %>
+				          	<% case product.kind %>
+					        <% when 0 %>
+					        <tr style="background-color: white">
+					        <% when 1 %>
+					        <tr style="background-color: #22A7F0">
+					        <% when 2 %>
+					        <tr class="success">
+					        <% when 3 %>
+					        <tr style="background-color:#2ecc71">
+					        <% when 4 %>
+					        <tr style="background-color:#F7CA18">
+					        <% when 5 %>
+					        <tr class="warning">
+					        <% when 6 %>
+					        <tr style="background-color:#1BA39C">
+					        <% when 7 %>
+					        <tr class="success">
+					        <% when 8 %>
+					        <tr style="background-color:#9B59B6">
+					        <% when 9 %>
+					        <tr style="background-color:#D2527F">
+					        <% when 10 %>
+					        <tr style="background-color:#95A5A6">
+					        <% when 11 %>
+					        <tr style="background-color: #4183D7">
+					        <% else %>
+					        <tr style="background-color:#F7CA18">
+					        <% end %>
+							  <% cantidad = @transfer.toma_detalle(product) %>
+				              <td><%= product.sale_title %></td>
+				              <td><%= cantidad.to_s + " " + product.measurement_unit %></td>
+				              <% prdct = Product.where(store_id: @transfer.receiver, product_number: product.product_number).first %>
+				              <td> <%= prdct.units.to_s + " " + product.measurement_unit %> </td> <!-- AQUÍ SE DEBE AJUSTAR AL NUEVO PARAMETRO DE HAS MANY -->
+				              <td>$ <%= product.wholesale_price.to_s %></td>
+				            </tr>
+				          <% end %>
+				        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

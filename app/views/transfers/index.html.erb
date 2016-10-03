@@ -1,0 +1,57 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center">Nueva transferencia de productos</h1>
+
+				<%= form_tag({controller: "transfers", action: "new"}, method: "get") do %>
+			<div class="row">
+				<div class="col-md-6 text-center">
+					<h3>Desde:</h3>
+					<%= select_tag "store_1", options_from_collection_for_select(Store.all, :id, :name), {class: "form-control"} %>
+				</div>
+				<div class="col-md-6 text-center">
+					<h3>Hacia:</h3>
+					<%= select_tag "store_2", options_from_collection_for_select(Store.all, :id, :name), {class: "form-control"} %>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<%= submit_tag 'Continuar', class:"btn btn-success btn-lg" %>
+				</div>
+			</div>
+				<% end %>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="text-center">Historial de transferencias</h2>
+			<br>
+
+			<table class="table table-bordered">
+        <thead>
+          <tr>
+          	<th>Empleado</th>
+            <th>Fuente de transferencia</th>
+            <th>Destino de transferencia</th>
+            <th>Fecha</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead> 
+        <tbody>
+          <% @transfers.each do |transfer| %>
+            <tr class="info">
+              <td><%= transfer.user.name %></td>
+              <td><%= Store.find(transfer.source).name %></td>
+              <td><%= Store.find(transfer.receiver).name %></td>
+              <td><%= transfer.updated_at.in_time_zone.to_formatted_s(:long) %></td>
+              <td class="text-center"><%= link_to 'Ver', transfer , class:"btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+		</div>
+	</div>
+</div>
