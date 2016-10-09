@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
 	validates :units, presence: true
 	validates :product_number, presence: true
 	validates :sale_price, presence: true
+	after_create :all_products
 
 	mount_uploader :image, PictureUploader
 
@@ -24,7 +25,15 @@ class Product < ActiveRecord::Base
 
 	scope :criticos, -> {where("units <= critical")}
 
-
+	def all_products
+		stores = Store.all.size
+		b = self.store_id
+		if b < stores 
+		a = self.dup
+		a.store_id = self.store_id + 1
+		a.save
+		end
+	end
 
 	
 end

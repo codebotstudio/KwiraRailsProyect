@@ -4,9 +4,9 @@
 		* <%= message %>
 	</div>
 	<%end%>
+
 	<div class="field">
-		<h4>Sucursal</h4>
-		<%= f.select(:store_id, options_from_collection_for_select(Store.all, :id, :name), {}, {class: "form-control"}) %>
+		<%= f.hidden_field :store_id, :value => 1 %>
 	</div>
 	<div class="field">
 		<h4>Nombre de Venta</h4>
