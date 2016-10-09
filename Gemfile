@@ -16,8 +16,6 @@ gem 'carrierwave'
 # USAMOS DEVISE PARA LA AUTENTICACIÓN DE USUARIOS
 gem 'devise'
 
-
-
 # FONT AWESOME!!!
 gem "font-awesome-rails"
 

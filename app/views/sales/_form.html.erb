@@ -10,6 +10,29 @@
       </ul>
     </div>
   <% end %>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <table id="bought" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody id="body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1 id="total_sale"></h1>
+    </div>
+  </div>
   
   <% mayoreo = Store.find(current_user.store_id).wholesale %>
 
@@ -20,19 +43,56 @@
     <%= f.hidden_field :store_id, :value => current_user.store_id %>
   </div>
 
-  <a href="#terminar" class="btn btn-lg btn-primary">Terminar venta</a>
+  <button class="btn btn-lg btn-primary">Terminar venta</button>
 
   <script>
+
+  var ventas = []
   $( document ).ready(function() {
     // check checkbox for clicked row
+    /*
     $('table').on('click', 'input[type=number]', function () {
+
         $(this).closest('tr').find('input[type=checkbox]').prop('checked', true);
     });
+    */
+    $(".add_product").on('click', function() {  
+      var prd = $(this).closest('tr');
+      if(prd.find('#quantity').val() == null || prd.find('#quantity').val() == ""){
+        ventas.push({
+        id: parseInt(prd.find('#number').attr('value')), 
+        name: prd.find('#name').text(), 
+        quantity: 1, 
+        price: parseFloat(prd.find('#precio').attr('value'))});
+      writeTable(ventas);
+      writeTotal();
+      }else{
+        ventas.push({
+        id: parseInt(prd.find('#number').attr('value')), 
+        name: prd.find('#name').text(), 
+        quantity: parseFloat(prd.find('#quantity').val()), 
+        price: parseFloat(prd.find('#precio').attr('value'))});
+      writeTable(ventas);
+      writeTotal();
+      }
+      //alert(tr.find('#number').text());
+    });
+/*
+function writeTotal(array) {
+  var total = 0;
+  for(var i = 0; i < array.length; i++){
+    total += array[i].price * array[i].quantity;
+  };
+  $('#total_sale').text('$ ' + total);
+  
+};*/
+
 
 
     // INICIO PRUEBA
     // FIN PRUEBA
     // remove check in inputs are empty for that row
+    /*
     $('input[type=number]').blur(function () { 
         $('table tr').each(function () {
             var emptyRow = true;
@@ -45,8 +105,50 @@
                 $(this).find('input[type=checkbox]').prop('checked', false);
             }
         });
-    })
+    }) */
   });
+
+function writeTotal() {
+  var table = document.getElementById('bought'),
+    cells = table.getElementsByClassName('totals');
+  var total = 0;
+  for(var i = 0, len = cells.length; i<len; i++){
+    total += parseFloat($(cells[i]).attr('data-value'));
+  };
+  $('#total_sale').text('$ ' + total);
+  
+};
+function deleteRow(btn) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+  writeTotal();
+};
+
+
+function writeTable(array) {
+    // declare html variable (a string holder):
+    var html = '';
+    //for (var i = 0; i < array.length; i++) {
+        // add opening <tr> tag to the string:
+        html += '<tr>';
+        
+        html += '<td name="product_id[]" value=\'' + parseInt(array[array.length-1].id) + '\'>' + array[array.length-1].name + '</td>';
+        if (array[array.length-1].quantity == NaN) {
+        html += '<td name="quantity[]" value=\'1\'>1</td>';
+        } else{
+          html += '<td name="quantity[]" value=\'' + parseFloat(array[array.length-1].quantity) + '\'>' + parseFloat(array[array.length-1].quantity) + '</td>';
+        };
+        html += '<td class=\"totals\" data-value=\"' + array[array.length-1].quantity * array[array.length-1].price + '\"> $ ' + array[array.length-1].quantity * array[array.length-1].price + '</td>';
+        html += '<td class="text-center"><button class="btn btn-danger" value="Delete" onclick="deleteRow(this)"><%= fa_icon "times" %></button></td>';
+        // add closing </tr> tag to the string:
+        html += '</tr>';
+    //}
+    //append created html to the table body:
+    $('#body').append(html);
+
+};
+
+//$('.totals')function writeTotal
   </script>
 
   <table class="table table-bordered" id="sales">
@@ -96,17 +198,17 @@
         <% else %>
         <tr style="background-color:#F7CA18">
         <% end %>
-          <td><%= product.product_number %></td>
-          <td><%= product.sale_title %></td>
+          <td id="number" value='<%= product.id %>'><%= product.product_number %></td>
+          <td id="name"><%= product.sale_title %></td>
           <% if mayoreo %>
-            <td> $ <%=product.wholesale_price %></td>
-            <td> $ <%=product.sale_price %></td>
+            <td id="precio_mayoreo" value="<%=product.wholesale_price %>"> $ <%=product.wholesale_price %></td>
+            <td id="precio" value="<%=product.sale_price %>"> $ <%=product.sale_price %></td>
           <% else %>
-            <td> $ <%=product.sale_price %></td>
+            <td id="precio" value="<%=product.sale_price %>"> $ <%=product.sale_price %></td>
           <% end %>
           <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td> <%= number_field_tag  "quantity[]", nil , min: 0, max: product.units,class:'form-control', step: 'any' %> </td>
-          <td class="text-center"><%= check_box_tag "product_id[]", product.id %></td>
+          <td id="cantidad"> <%= number_field_tag  "quantity", nil , min: 0, max: product.units,class:'form-control', step: 'any' %> </td>
+          <td class="text-center"><button onClick="return false;" class="add_product btn btn-success"><%= fa_icon "plus" %></button></td>
         </tr>
       <% end %>
     </tbody>
