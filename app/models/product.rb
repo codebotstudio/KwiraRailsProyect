@@ -29,9 +29,9 @@ class Product < ActiveRecord::Base
 		stores = Store.all.size
 		b = self.store_id
 		if b < stores 
-		a = self.dup
-		a.store_id = self.store_id + 1
-		a.save
+			a = self.dup
+			a.store_id = self.store_id + 1
+			a.save
 		end
 	end
 

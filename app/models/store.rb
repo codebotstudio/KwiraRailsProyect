@@ -3,4 +3,14 @@ class Store < ActiveRecord::Base
 	validates :address, presence: true
 	validates :phone, presence: true
 	validates :wholesale, presence: true
+	after_create :all_products
+
+	def all_products
+		products = Product.all.where(store_id: 1)
+		products.each do |prd|
+			a = prd.dup
+			a.store_id = self.id
+			a.save
+		end
+	end
 end

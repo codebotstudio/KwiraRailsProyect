@@ -4,10 +4,15 @@
 		* <%= message %>
 	</div>
 	<%end%>
-
+	<% if @product.store_id == nil %>
 	<div class="field">
 		<%= f.hidden_field :store_id, :value => 1 %>
 	</div>
+	<% else %>
+	<div class="field">
+		<%= f.hidden_field :store_id, :value => @product.store_id %>
+	</div>
+	<% end %>
 	<div class="field">
 		<h4>Nombre de Venta</h4>
 		<%= f.text_field :sale_title, placeholder: "Nombre de venta", class:"form-control" %>
