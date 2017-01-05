@@ -21,6 +21,10 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
     @sales = Sale.all.where(store_id: @store).recientes.today
     @sales = Sale.all.where(store_id: @store).ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
+
+    @devolutions = Devolution.all.where(store_id: @store).recientes.today
+    @devolutions = Devolution.all.where(store_id: @store).devoluciones_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
+ 
   end
 
   def pending

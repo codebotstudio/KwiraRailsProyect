@@ -8,15 +8,20 @@ class SalesController < ApplicationController
   def index
     if current_user.permission_level == "1"
       @sales = Sale.all.where(store_id: current_user.store_id).venta_trabajador(current_user).recientes.today
+      @devolutions = Devolution.all.where(store_id: current_user.store_id).devolucion_trabajador(current_user).recientes.today
     else
       @sales = Sale.all.where(store_id: current_user.store_id).recientes.today
+      @devolutions = Devolution.all.where(store_id: current_user.store_id).recientes.today
     end
     # No funciona @sales = Sale.hoy
   end
 
   def history
     @sales = Sale.all.where(store_id: current_user.store_id).recientes.today
+    @devolutions = Devolution.all.where(store_id: current_user.store_id).recientes.today
+
     @sales = Sale.all.recientes.where(store_id: current_user.store_id).ventas_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
+    @devolutions = Devolution.all.recientes.where(store_id: current_user.store_id).devoluciones_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
   end
 
   def pending

@@ -8,7 +8,7 @@
       <br>
       <br>
       
-      <table class="table table-bordered" id="devolution">
+      <table class="table table-bordered" id="devolutions">
         <thead>
           <tr>
             <th>Usuario</th>
@@ -42,16 +42,16 @@
                 <% end %>
               </td>
               <td><%= link_to 'Ver', devolution , class:"btn btn-primary btn-block" %></td>
-              <!--
-              EDITAR
-              <td><%= link_to 'Edit', edit_devolution_path(devolution) %></td>
-              ELIMINAR
-              <td><%= link_to 'Destroy', devolution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            -->
             </tr>
           <% end %>
         </tbody>
       </table>
+              <!--
+              EDITAR
+              link_to 'Edit', edit_devolution_path(devolution) 
+              ELIMINAR
+              link_to 'Destroy', devolution, method: :delete, data: { confirm: 'Are you sure?' }
+            -->
 
       <br>
 
@@ -60,4 +60,3 @@
   </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

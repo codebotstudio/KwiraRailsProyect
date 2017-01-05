@@ -1,10 +1,14 @@
 body{
 	font-size: 20px;
 }
+
+.navbar-nav>li>a{
+  font-size: 16px;
+}
 h1{
   font-family: 'Ubuntu';
   font-weight: 700;
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .top-head{
@@ -40,7 +44,7 @@ p{
 .btn-high{
   padding-top: 20px;
   padding-bottom: 20px;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: 'Ubuntu';
   font-weight: 700;
 }
@@ -78,6 +82,12 @@ h4.alineado{
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+.ir-atras{
+  position: fixed;
+  top: 85px;
+  left: 15px;
 }
 
 .rojo{

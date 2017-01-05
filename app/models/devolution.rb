@@ -4,6 +4,16 @@ class Devolution < ActiveRecord::Base
 	has_many :products, through: :has_returned_product
 
 	scope :recientes, -> {order("created_at DESC")}
+	scope :today, -> {where("updated_at >= ?", Time.zone.now.beginning_of_day)}
+
+	# SCOPE listo y funcionando
+  def self.devolucion_trabajador(user)
+    where(user_id: user.id)
+  end
+
+  def self.devoluciones_entre(start, finish)
+    where(updated_at: start.to_date.beginning_of_day..finish.to_date.end_of_day)
+  end
 
 	def make_returned_products(product_ids, quantities)
 		mayoreo = Sale.find(self.sale_id).wholesale

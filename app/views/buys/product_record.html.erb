@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
+    <%= link_to 'Atrás', buys_list_product_path, class:"btn btn-info ir-atras"%>
     <div class="col-md-12">
       <p id="notice"><%= notice %></p>
 
       <h1 class="text-center top-head">Historial de compra de <%= @product.sale_title %> </h1>
 
-      <%= link_to 'Regresar', buys_list_product_path, class:"btn btn-lg btn-primary" %>
-      <br>
+      
       <br>
       
       <table class="table table-bordered" >

@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <p id="notice"><%= notice %></p>
+      <%= link_to 'Atrás', sales_path, class:"btn btn-info ir-atras"%>
 
       <h1 class="text-center top-head">Historial de ventas</h1>
 
@@ -101,6 +102,58 @@
           </div>
           <% end %>
 
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          
+          <% if @devolutions.size == 0 %>
+            <h2>No hay devoluciones registradas entre las fechas consultadas</h2>
+          <% else %>
+
+            <br><br>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Empleado</th>
+                <th>Resumen de devoluciones</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th colspan="1"></th>
+              </tr>
+            </thead> 
+
+              <% devolutions_total_between = 0 %> <!-- INICIALIZAMOS LA VARIABLE DEL TOTAL DEVUELTO-->
+            <tbody>
+              <% @devolutions.each do |dev| %>
+                <% devolutions_total_between += dev.money_returned %>
+                <tr class="danger">
+                  <td><%= dev.user.name %></td>
+                  <td>
+                    <% x = "" %>
+                    <% dev.products.each do |product| %>
+                      <% x += product.sale_title.split.first + ", " %>
+                    <% end %>
+                    <%= truncate(x, length:25) %>
+                  </td>
+                  <td><%= dev.updated_at.in_time_zone.to_formatted_s(:long) %></td>
+                  <td> $ <%= dev.money_returned %></td>
+                  <td class="text-center"><%= link_to 'Detalles', dev , class:"btn btn-info" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="text-center">
+            <h2>El total de devoluciones entre las fechas consultadas es: </h2>
+            <h1>$<%= devolutions_total_between %></h1>
+            <br>
+            <h2>El total de ganacias entre las fechas consultadas es:</h2>
+            <h1>$<%= total_between - devolutions_total_between %></h1>
+          </div>
+
+          <% end %>
 
         </div>
       </div>

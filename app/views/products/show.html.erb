@@ -1,4 +1,5 @@
 <div class="container">
+	<%= link_to 'Atrás', products_path, class:"btn btn-info ir-atras"%>
 	<% if user_signed_in? %>
 		<% if current_user.permission_level == "1" %>
 		<% else %>
