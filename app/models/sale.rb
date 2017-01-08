@@ -4,6 +4,8 @@ class Sale < ActiveRecord::Base
   has_many :has_product
   has_many :products, through: :has_product
 
+  after_create :set_sale_id
+
 #<<<<<<< HEAD
   #scope :high_sale, -> {order("total_price DESC").limit(10)}
 
@@ -24,26 +26,15 @@ class Sale < ActiveRecord::Base
     where(updated_at: start.to_date.beginning_of_day..finish.to_date.end_of_day)
   end
 
-  # Método para ventas entre fechas 
-=begin
-  def self.entre_fechas(inicio, final)
-    where(created_at:)
+  def set_sale_id
+    store = self.store_id
+    employee = self.user_id
+    number = self.id
+    ticket_number = sprintf("%02d", store) + sprintf("%02d", employee) + sprintf("%06d", number)
+    self.update_columns(ticket_id: ticket_number)
   end
-=end
 
-=begin
-NO SE USA? MERGE
-  #Custom setter
-  def product_id=(value)
-    @product_id = value
-  end
-  private
 
-  def save_product_id
-  	@product_id.each do |product_id|
-  		HasProduct.create(product_id: product_id, sale_id: self.id)
-  	end
-=end
   def make_has_products(product_ids, quantities)
     item = 0
     total = 0
