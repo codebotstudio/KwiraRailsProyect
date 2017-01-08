@@ -24,6 +24,11 @@ class SalesController < ApplicationController
     @devolutions = Devolution.all.recientes.where(store_id: current_user.store_id).devoluciones_entre(params[:start], params[:finish]) if (params[:start] && params[:finish]).present?
   end
 
+  def by_ticket
+    @sales = nil
+    @sales = Sale.all.where(ticket_id: params[:number]) if (params[:number]).present?
+  end
+
   def pending
     @sales = Sale.all.where(store_id: current_user.store_id).pendiente
   end

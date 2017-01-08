@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get '/sales/history' => 'sales#history'
   get '/sales/pending' => 'sales#pending'
+  get '/sales/by_ticket' => 'sales#by_ticket'
   resources :sales
 
   get '/stores/sales' => 'stores#sales'

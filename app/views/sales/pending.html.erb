@@ -12,6 +12,7 @@
         <% if current_user.permission_level == "1" %>
         <% else %>
           <%= link_to 'Historial de ventas', sales_history_path, class:"btn btn-lg btn-info" %>
+          <%= link_to 'Buscar por Ticket', sales_by_ticket_path, class:"btn btn-lg btn-primary" %>
         <% end %>
       <% end %>
       <br>

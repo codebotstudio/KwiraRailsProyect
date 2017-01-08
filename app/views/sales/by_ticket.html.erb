@@ -2,19 +2,31 @@
   <div class="row">
     <div class="col-md-12">
       <p id="notice"><%= notice %></p>
+      <%= link_to 'Atrás', sales_path, class:"btn btn-info ir-atras"%>
 
-      <h1 class="text-center top-head">Devoluciones</h1>
+      <h1 class="text-center">Buscar venta por Ticket</h1>
 
-      <%= link_to 'Ver devoluciones', devolutions_path , class:"btn btn-lg btn-success"%>
+      <%= link_to 'Nueva Venta', new_sale_path , class:"btn btn-lg btn-success"%>
+      <%= link_to 'Ventas Recientes', sales_path , class:"btn btn-lg btn-primary"%>
+      <%= link_to 'Ventas Pendientes', sales_pending_path, class:"btn btn-lg btn-warning" %>
+      <% if user_signed_in? %>
+        <% if current_user.permission_level == "1" %>
+        <% else %>
+          <%= link_to 'Historial de ventas', sales_history_path, class:"btn btn-lg btn-info" %>
+
+        <% end %>
+      <% end %>
       <br>
+      <br>
+      
       <div class="row">
         <div class="col-md-6 col-sm-6">
-          <h2>Busca la venta a devolver:</h2>
+          <h2>Busca venta:</h2>
         </div>
         <div class="col-md-6 col-sm-6">
           <br><br>
 
-          <%= form_tag({controller: "devolutions", action: "search"}, method: "get") do %>
+          <%= form_tag({controller: "sales", action: "by_ticket"}, method: "get") do %>
           <div class="input-group">
               <span class="input-group-addon">No. de Ticket: </span>
               <%= text_field_tag 'number', nil, class:"form-control" %>
@@ -30,7 +42,8 @@
         <div class="col-md-12">
 
 
-          <% if @sales.size == 0 %>
+          <% if @sales == nil %>
+          <% elsif @sales.size == 0 %>
             <h3>No hay ventas registradas con el número consultado.</h3>
           <% else %>
 
@@ -62,7 +75,7 @@
                   </td>
                   <td><%= sale.updated_at.in_time_zone.to_formatted_s(:long) %></td>
                   <td> $ <%= sale.total_price %></td>
-                  <td class="text-center"><%= link_to 'Seleccionar', new_devolution_path(:id => sale.id) , class:"btn btn-info" %></td>
+                  <td class="text-center"><%= link_to 'Seleccionar', sale , class:"btn btn-info" %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -70,8 +83,12 @@
           <% end %>
         </div>
       </div>
+
       <br>
-      <br>
+
+
+
+     
     </div>
   </div>
 </div>
