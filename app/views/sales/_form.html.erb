@@ -38,10 +38,10 @@
 
   <script>
 
+  $( document ).ready(function() {
   var ventas = [];
   var identificadores = [];
   var cantidades = [];
-  $( document ).ready(function() {
     /*
     // check checkbox for clicked row
     $('table').on('click', 'input[type=number]', function () {
@@ -155,10 +155,10 @@ function return_quantity(arr){
 }
 
 function writeTotal() {
-  var table = document.getElementById('bought'),
-    cells = table.getElementsByClassName('totals');
+  var table = document.getElementById('bought');
+  var cells = table.getElementsByClassName('totals');
   var total = 0;
-  for(var i = 0, len = cells.length; i<len; i++){
+  for(var i = 0; i < cells.length; i++){
     total += parseFloat($(cells[i]).attr('data-value'));
   };
   $('#total_sale').text('$ ' + total);
