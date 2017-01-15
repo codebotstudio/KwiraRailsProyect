@@ -116,33 +116,44 @@
 								</table>
 							</div>
 						</div>
-						<script>
-							function() {
-								var totalVenta = <%= @sale.total_price %>;
-								document.getElementById("cambio").innerHTML = totalVenta;
-							}
-						</script>
+					
 						
 						<div class="row">
-							<div class="col-md-12 text-center">
+							<div class="col-md-6 text-center">
 								<div class="field">
 									<h2>Total de Venta:</h2>
-									<h1 id="total">$<%= @sale.total_price %></h1>
+									<h1>$<%= @sale.total_price %></h1>
 								</div>
-							</div>	
-							<!--						
-							<div class="col-md-12">
+							</div>						
+							<div class="col-md-6">
 								<div class="field">
 									<h3>Recibo:</h3>
 									<div class="input-group">
 										<span class="input-group-addon">$</span>
 										<input type="number" id="recibo" class="form-control">
+										<span class="input-group-btn">
+											<button class="calcula btn btn-info">Calcular</button>
+										</span>
 									</div>
 									<h3>Cambio: <span id="cambio" name="cambio"></span></h3>
 								</div>
-							</div> -->
+							</div> 
 							<br>
 						</div>
+
+
+						<script>
+							var total = <%= @sale.total_price %>;
+							$(document).ready(function(){
+
+								$(".calcula").on('click', function(){
+									var recibi = document.getElementById("recibo").value;
+									document.getElementById("cambio").innerHTML = '$ ' + (recibi - total);
+								})
+							})
+						</script>
+
+
 						<div class="row">
 							<% if @sale.pending %>
 								<div class="col-md-6">

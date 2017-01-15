@@ -2,11 +2,15 @@
   <div class="row">
     <div class="col-md-12">
       <p id="notice"><%= notice %></p>
-
+      <%= link_to 'Atrás', root_url, class:"btn btn-info ir-atras"%>
       <h1 class="text-center top-head">Devoluciones</h1>
-
-      <%= link_to 'Ver devoluciones', devolutions_path , class:"btn btn-lg btn-success"%>
-      <br>
+      <% if user_signed_in? %>
+        <% if current_user.permission_level == '1' %>
+        <% else %>
+          <%= link_to 'Ver devoluciones', devolutions_path , class:"btn btn-lg btn-success"%>
+          <br>
+        <% end %>
+      <% end %>
       <div class="row">
         <div class="col-md-6 col-sm-6">
           <h2>Busca la venta a devolver:</h2>

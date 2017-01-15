@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+			<%= link_to 'Atrás', root_url, class:"btn btn-info ir-atras"%>
 			<h1 class="text-center">Usuarios</h1>
-
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -43,7 +43,9 @@
 			</table>
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<%= link_to "Registrar nueva Sucursal", new_store_path, class:"btn btn-success" %>
+					<%= link_to "Registrar nuevo usuario", new_user_path, class:"btn btn-success" %>
+					<br>
+					<br>
 				</div>
 			</div>
 		</div>
