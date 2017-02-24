@@ -56,9 +56,9 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(sale_params)
     if @sale.wholesale == true
-      @sale.make_wholesale_products(params[:product_id], params[:quantity])
+      @sale.make_wholesale_products(JSON.parse(params[:product_id]), JSON.parse(params[:quantity]))
     else
-      @sale.make_has_products(params[:product_id], params[:quantity])
+      @sale.make_has_products(JSON.parse(params[:product_id]), JSON.parse(params[:quantity]))
     end
     #@sale.save
     #@sale.save_total
@@ -67,6 +67,7 @@ class SalesController < ApplicationController
         #@sale.save_total
         format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
         format.json { render :show, status: :created, location: @sale }
+        format.js {render js: "window.location = '#{sales_path}';"}
       else
         format.html { render :new }
         format.json { render json: @sale.errors, status: :unprocessable_entity }
@@ -106,10 +107,10 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :total_price, :items, :pending, :store_id, :wholesale, :product_id, :quantity)
+      params.require(:sale).permit(:user_id, :total_price, :items, :pending, :store_id, :wholesale)
     end
 
-  #  def set_sale_params
-  #    params[:items] = :product_id
+  #  def sale_params
+  #    params.require(:sale).permit(:user_id, :total_price, :items, :pending, :store_id)
   #  end
 end

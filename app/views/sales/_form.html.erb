@@ -37,18 +37,12 @@
   <button class="btn btn-lg btn-primary">Terminar venta</button>
 
   <script>
-
-  $( document ).ready(function() {
+  var deleteItem;
+  $(document).ready(function() {
   var ventas = [];
   var identificadores = [];
   var cantidades = [];
-    /*
-    // check checkbox for clicked row
-    $('table').on('click', 'input[type=number]', function () {
 
-        $(this).closest('tr').find('input[type=checkbox]').prop('checked', true);
-    });
-    */
     $(".add_product").on('click', function() {  
       var prd = $(this).closest('tr');
       if(prd.find('#quantity').val() == null || prd.find('#quantity').val() == ""){
@@ -73,9 +67,7 @@
       identificadores = return_ids(ventas);
       cantidades = return_quantity(ventas);
 
-
       }else{
-
 
         for (var i = 0; i < ventas.length; i++) {
           if (ventas[i].id == parseInt(prd.find('#number').attr('value')) ) {
@@ -96,124 +88,113 @@
       writeTotal();
       identificadores = return_ids(ventas);
       cantidades = return_quantity(ventas);
-      }
-
-      //alert(tr.find('#number').text());
+      };
     });
-  });
-
-$('form').submit(function() {  
-  params = $('form').serializeArray();
-  params[params.length] = {name: "product_id", value: identificadores};
-  params[params.length] = {name: "quantity", value: cantidades};
-  params = JSON.stringify(params);
-  //str = JSON.stringify(params);
-  //params = JSON.parse(str);
-  params = {product_id: identificadores};
-
-  
-  //sendInfo = JSON.parse(sendInfo);
-  //params[params.length] = { name: "product_id", value: identificadores};
-  //params[params.length] = { name: "quantity", value: cantidades};
-  //params.push({product_id: identificadores, quantity: cantidades});
-
-  //params = JSON.parse(params);
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: $(this).attr('action'), //sumbits it to the given url of the form
-        data : JSON.stringify(params), 
-        /*JSON.parse({paramethers: params, product_id: JSON.stringify(identificadores), quantity: JSON.stringify(cantidades)}),
-        */
-        dataType: "JSON", // you want a difference between normal and ajax-calls, and json is standard
-    }).success(function(json){
-        console.log("success", json);
-    });
-    return false; // prevents normal behaviour
-});
-/*
-$.ajax({
-        url : "/sales/new",
-        type : "post",
-        data : { product_id: JSON.stringify(return_ids(ventas)), quantity: JSON.stringify(return_quantity(ventas))}
-    });
-*/
-function return_ids(arr){
-  var ids = []
-  for (var i = 0; i < arr.length; i++) {
-    ids.push(arr[i].id)
-  };
-  return ids;
-}
-
-function return_quantity(arr){
-  var quantity = []
-  for (var i = 0; i < arr.length; i++) {
-    quantity.push(arr[i].quantity)
-  };
-  return quantity;
-}
-
-function writeTotal() {
-  var table = document.getElementById('bought');
-  var cells = table.getElementsByClassName('totals');
-  var total = 0;
-  for(var i = 0; i < cells.length; i++){
-    total += parseFloat($(cells[i]).attr('data-value'));
-  };
-  $('#total_sale').text('$ ' + total);
-};
-
-function deleteItem(btn) {
-  var row = btn.parentNode;
-  var prd = $(row).closest('tr');
-  var id = parseInt(prd.find('#prd-id').attr('value'))
-
-  //var prd = parseInt(row.find('#prd-id').attr('value'));
-  for (var i = 0; i < ventas.length; i ++) {
-    if(ventas[i].id == id){
-      ventas.splice(i, 1);
-    }
-  };
-  //row.parentNode.removeChild(row);
-  writeTable(ventas);
-  writeTotal();
-};
-
-
-function writeTable(array) {
-    // declare html variable (a string holder):
-    var myTable = '<table id="bought" class="table table-bordered"><thead><tr><th>Producto</th><th>Cantidad</th><th>Total</th><th colspan="1"></th></tr></thead><tbody>'
-
-    for (var i = 0; i < array.length; i++) {
-      
-        
-      var html = '';
-      //for (var i = 0; i < array.length; i++) {
-          // add opening <tr> tag to the string:
-          html += '<tr>';
-          
-          html += '<td id="prd-id" name="product_id[]" value=\'' + parseInt(array[i].id) + '\'>' + array[i].name + '</td>';
-          if (array[i].quantity == NaN) {
-          html += '<td name="quantity[]" value=\'1\'>1</td>';
-          } else{
-            html += '<td name="quantity[]" value=\'' + parseFloat(array[i].quantity) + '\'>' + parseFloat(array[i].quantity) + '</td>';
-          };
-          html += '<td class=\"totals\" data-value=\"' + array[i].quantity * array[i].price + '\"> $ ' + array[i].quantity * array[i].price + '</td>';
-          html += '<td class="text-center"><button type="button" class="btn btn-danger" value="Delete" onclick="deleteItem(this)"><%= fa_icon "times" %></button></td>';
-          // add closing </tr> tag to the string:
-          html += '</tr>';
-          myTable += html;
+    
+    function return_ids(arr){
+      var ids = [];
+      for (var i = 0; i < arr.length; i++) {
+        ids.push(arr[i].id);
+      };
+      return ids;
     };
 
-    myTable += '</tbody></table>'
-    //}
-    //append created html to the table body:
-    document.getElementById("new-table").innerHTML = myTable;
-    //$('#new-table').write(myTable);
+    function return_quantity(arr){
+      var quantity = [];
+      for (var i = 0; i < arr.length; i++) {
+        quantity.push(arr[i].quantity);
+      };
+      return quantity;
+    };
 
-};
+    function writeTotal() {
+      var table = document.getElementById('bought');
+      var cells = table.getElementsByClassName('totals');
+      var total = 0;
+      for(var i = 0; i < cells.length; i++){
+        total += parseFloat($(cells[i]).attr('data-value'));
+      };
+      $('#total_sale').text('$ ' + total);
+    };
+    deleteItem = function(btn) {
+      var row = btn.parentNode;
+      var prd = $(row).closest('tr');
+      var id = parseInt(prd.find('#prd-id').attr('value'));
+      //var prd = parseInt(row.find('#prd-id').attr('value'));
+      for (var i = 0; i < ventas.length; i ++) {
+        if(ventas[i].id == id){
+          ventas.splice(i, 1);
+        };
+      };
+      //row.parentNode.removeChild(row);
+      writeTable(ventas);
+      writeTotal();
+    };
 
+    function writeTable(array) {
+        var myTable = '<table id="bought" class="table table-bordered"><thead><tr><th>Producto</th><th>Cantidad</th><th>Total</th><th colspan="1"></th></tr></thead><tbody>';
+
+        for (var i = 0; i < array.length; i++) {    
+          var html = '';
+          //for (var i = 0; i < array.length; i++) {
+              // add opening <tr> tag to the string:
+              html += '<tr>';
+              
+              html += '<td id="prd-id" name="product_id[]" value=\'' + parseInt(array[i].id) + '\'>' + array[i].name + '</td>';
+              if (array[i].quantity == NaN) {
+              html += '<td name="quantity[]" value=\'1\'>1</td>';
+              } else{
+                html += '<td name="quantity[]" value=\'' + parseFloat(array[i].quantity) + '\'>' + parseFloat(array[i].quantity) + '</td>';
+              };
+              html += '<td class=\"totals\" data-value=\"' + array[i].quantity * array[i].price + '\"> $ ' + array[i].quantity * array[i].price + '</td>';
+              html += '<td class="text-center"><button type="button" class="btn btn-danger" value="Delete" onClick="deleteItem(this)"><%= fa_icon "times" %></button></td>';
+              // add closing </tr> tag to the string:
+              html += '</tr>';
+              myTable += html;
+        };
+        myTable += '</tbody></table>';
+        //}
+        //append created html to the table body:
+        document.getElementById("new-table").innerHTML = myTable;
+        //$('#new-table').write(myTable);
+    };
+
+$('form').submit(function() {  
+
+/*
+      params[params.length] = {name: "product_id", value: 2};
+      params[params.length] = {name: "quantity", value: 10};
+      params = JSON.stringify(params);
+      //str = JSON.stringify(params);
+      //params = JSON.parse(str);
+      //params = {product_id: identificadores};
+
+      
+      //sendInfo = JSON.parse(sendInfo);
+      //params[params.length] = { name: "product_id", value: identificadores};
+      //params[params.length] = { name: "quantity", value: cantidades};
+      //params.push({product_id: identificadores, quantity: cantidades});
+
+      //params = JSON.parse(params);
+      */
+      //var myParametersObject = {'product_id':identificadores, 'quantity':cantidades};
+   
+      $.ajax({
+        type: "POST",
+        //contentType: "application/json",
+        url: $(this).attr('action'), //sumbits it to the given url of the form
+        data : $('form').serialize() + '&product_id=' + '[' + identificadores.toString() + ']' + '&quantity=[' + cantidades.toString() + ']',
+        dataType: "JSON",
+        success: function( response ) {
+                console.log( response );
+            } // you want a difference between normal and ajax-calls, and json is standard
+      });
+      return false; // prevents normal behaviour
+    });
+});
+        /*
+    });
+   */
 //$('.totals')function writeTotal
   </script>
 
