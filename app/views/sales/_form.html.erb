@@ -185,9 +185,15 @@ $('form').submit(function() {
         url: $(this).attr('action'), //sumbits it to the given url of the form
         data : $('form').serialize() + '&product_id=' + '[' + identificadores.toString() + ']' + '&quantity=[' + cantidades.toString() + ']',
         dataType: "JSON",
-        success: function( response ) {
-                console.log( response );
-            } // you want a difference between normal and ajax-calls, and json is standard
+        error: function (request, error) {
+            console.log(arguments);
+            alert("No pudo proceder");
+        },
+        success: function(data) {
+         
+            window.location.href = '/sales/' + data.id
+          
+        }// you want a difference between normal and ajax-calls, and json is standard
       });
       return false; // prevents normal behaviour
     });
@@ -197,6 +203,29 @@ $('form').submit(function() {
    */
 //$('.totals')function writeTotal
   </script>
+  
+  <div class="row" id="terminar">
+    <div class="col-md-6">
+      <div class="field">
+        <h2>Marcar Venta Pendiente: 
+        <%= f.check_box :pending %>
+        </h2>
+      </div>
+    </div>
+    <% if mayoreo %>
+      <div class="col-md-6">
+        <div class="field">
+          <h2>Marcar Venta de Mayoreo:
+          <%= f.check_box :wholesale %>
+          </h2>
+        </div>
+      </div>
+    <% else %>
+      <div class="field">
+        <%= f.hidden_field :wholesale, :value => false %>
+      </div>
+    <% end %>
+  </div>
 
   <table class="table table-bordered" id="sales">
     <thead>
@@ -272,28 +301,7 @@ $('form').submit(function() {
     <%= f.label :items %><br>
     <%= f.number_field :items %>
   </div> -->
-  <div class="row" id="terminar">
-    <div class="col-md-6">
-      <div class="field">
-        <h2>Marcar Venta Pendiente: 
-        <%= f.check_box :pending %>
-        </h2>
-      </div>
-    </div>
-    <% if mayoreo %>
-      <div class="col-md-6">
-        <div class="field">
-          <h2>Marcar Venta de Mayoreo:
-          <%= f.check_box :wholesale %>
-          </h2>
-        </div>
-      </div>
-    <% else %>
-      <div class="field">
-        <%= f.hidden_field :wholesale, :value => false %>
-      </div>
-    <% end %>
-  </div>
+
   <div class="row">
     <div class="col-md-6">
       <br>
