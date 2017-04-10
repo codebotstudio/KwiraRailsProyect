@@ -132,7 +132,7 @@
     };
 
     function writeTable(array) {
-        var myTable = '<table id="bought" class="table table-bordered"><thead><tr><th>Producto</th><th>Cantidad</th><th>Total</th><th colspan="1"></th></tr></thead><tbody>';
+        var myTable = '<table id="bought" class="table table-bordered table-condensed"><thead><tr><th>Producto</th><th>Cantidad</th><th>Total</th><th colspan="1"></th></tr></thead><tbody>';
 
         for (var i = 0; i < array.length; i++) {    
           var html = '';
@@ -227,7 +227,7 @@ $('form').submit(function() {
     <% end %>
   </div>
 
-  <table class="table table-bordered" id="sales">
+  <table class="table table-bordered table-condensed" id="sales">
     <thead>
       <tr>
         <th>ID</th>
@@ -283,7 +283,7 @@ $('form').submit(function() {
             <td id="precio" value="<%=product.sale_price %>"> $ <%=product.sale_price %></td>
           <% end %>
           <td> <%= product.units.to_s + " " + product.measurement_unit %> </td>
-          <td id="cantidad"> <input id="quantity" type="number" min="0" max="<%= product.measurement_unit %>" step="any" class="form-control"> 
+          <td id="cantidad"> <input id="quantity" type="tel" min="0" max="<%= product.units %>" step="any" class="form-control"> 
             <!--<%= number_field_tag  "quantity", nil , min: 0, max: product.units,class:'form-control', step: 'any' %> --></td>
           <td class="text-center"><button onClick="return false;" class="add_product btn btn-success"><%= fa_icon "plus" %></button></td>
         </tr>
