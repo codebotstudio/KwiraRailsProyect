@@ -48,7 +48,8 @@ class SalesController < ApplicationController
 
   # GET /sales/1/edit
   def edit
-    @products = Product.all.where(store_id: current_user.store_id).activos
+    @sale = Sale.find(params[:id])
+    @products = Product.all.where(store_id: @sale.store_id).activos
   end
 
   # POST /sales
